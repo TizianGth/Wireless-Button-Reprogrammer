@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperXCloud2", "HyperXCloud2\HyperXCloud2.csproj", "{ED0DE598-7F12-4017-AE36-9BFE1ACC5970}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED0DE598-7F12-4017-AE36-9BFE1ACC5970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED0DE598-7F12-4017-AE36-9BFE1ACC5970}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED0DE598-7F12-4017-AE36-9BFE1ACC5970}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED0DE598-7F12-4017-AE36-9BFE1ACC5970}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBD7F495-E486-48A5-B107-BD6FD8ABB4D9}
+	EndGlobalSection
+EndGlobal
