@@ -104,6 +104,8 @@ namespace HyperXCloud2
         }
         private void SetConfig(Config config)
         {
+            if(config == null) return;
+
             Vid.Text = config.variables[0]; Pid.Text = config.variables[1]; Interval.Text = config.variables[2]; Keycode1.Text = config.variables[3]; Keycode2.Text = config.variables[4]; Keycode3.Text = config.variables[5];
         }
         private int ParseStringToInt(string text)

@@ -15,7 +15,10 @@ namespace HyperXCloud2
         }
         public static Config LoadConfig()
         {
+            if (!File.Exists(Environment.CurrentDirectory + "//config.yml")) return null;
+
             Config config = new Config();
+
             string[] text = ReadLinesFromFile("config.yml");
 
             for(int i = 0; i < text.Length; i++)
