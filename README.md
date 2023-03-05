@@ -32,7 +32,7 @@ You can donload the .exe here on github under "Releases"
 is which, so you either have to try all of the "HID-compliant consumer control" devices or download a 3rd party tool like [Busdog](https://github.com/djpnewton/busdog). But once you find out your IDs they won't change. \
 ![HIDs](https://github.com/GuthiYT/hyperx/blob/main/doc/img/hid.png)
 
-3. Right click and select "Properties", then switch to "Details". There you should select "Hardware IDs" from the "Property" drop down menu. Now you can already
+3. To view the IDs, right click and select "Properties", then switch to "Details". There you should select "Hardware IDs" from the "Property" drop down menu. Now you can already
 see the Vendor ID (the 4 numbers after "VID_") and the Product ID (the 4 numbers after "PID_"). \
 ![VPID](https://github.com/GuthiYT/hyperx/blob/main/doc/img/vid_pid.png)
 
