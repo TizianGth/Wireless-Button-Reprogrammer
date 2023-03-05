@@ -5,7 +5,7 @@
 * [Setup](#setup)
 * [Technologies](#technologies)
 ## General info
-Repurposes the mute button on the HyperX Cloud II Wireless (DLS), which you can use now to do 3 different actions, which you can programm yourself,
+Repurposes the mute button on the HyperX Cloud II Wireless (DTS), which you can use now to do 3 different actions, which you can programm yourself,
 but the default behaviour is:
 * 1 click = Pause/Resume
 * 2 clicks = Next
@@ -17,7 +17,7 @@ Because of that I would advise you to only use this tool if you can live without
 
 ## Supported devices
 * Windows only
-* HyperX Cloud II Wireless (DLS Version)
+* HyperX Cloud II Wireless (DTS Version)
 
 Sadly it's only one at the moment, but if you want to use this tool and your device is not supported, feel free to contact me (e.g open an issue here on github).
 
