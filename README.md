@@ -28,7 +28,8 @@ You can donload the .exe here on github under "Releases"
 1. Open your Device Manager and expand "Human Interface Devices".\
 ![device manager](https://github.com/GuthiYT/hyperx/blob/main/doc/img/device_manager.png)
 
-2. Unplug and Re-plug your USB dongle from your computer. Now your desired device should be the last one from the "HID-compliant consumer control" devices. \
+2. Now you have to find the right devince from the "HID-compliant consumer control" devices. Windows default devicve manager dosn't really let you know which device
+is which, so you either have to try all of the "HID-compliant consumer control" devices or download a 3rd party tool like [Busdog](https://github.com/djpnewton/busdog). But once you find out your IDs they won't change. \
 ![HIDs](https://github.com/GuthiYT/hyperx/blob/main/doc/img/hid.png)
 
 3. Right click and select "Properties", then switch to "Details". There you should select "Hardware IDs" from the "Property" drop down menu. Now you can already
