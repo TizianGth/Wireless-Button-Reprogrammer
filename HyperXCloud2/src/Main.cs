@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.Win32;
+
 namespace HyperXCloud2
 {
     public class Main
@@ -14,10 +16,23 @@ namespace HyperXCloud2
 
         public Main()
         {
-            //Start(0x03F0, 0x0696);
+            SetStartup();
         }
 
-        public void Start(int Vid, int Pid)
+    private void SetStartup()
+    {
+        RegistryKey rk = Registry.CurrentUser.OpenSubKey
+            ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            if (!rk.GetValueNames().Contains("HyperX"))
+            {
+                rk.SetValue("HyperX", Environment.CurrentDirectory + "//HyperXCloud2.exe");
+            }
+
+
+    }
+
+    public void Start(int Vid, int Pid)
         {
             if (Started) return;
 
