@@ -22,6 +22,8 @@ Because of that I would advise you to only use this tool if you can live without
 Sadly it's only one at the moment, but if you want to use this tool and your device is not supported, feel free to contact me (e.g open an issue here on github).
 
 ## Setup
+### Download
+You can donload the .exe here on github under "Releases"
 ### How to find you Vendor and Product ID:
 1. Open your Device Manager and expand "Human Interface Devices".\
 ![device manager](https://github.com/GuthiYT/hyperx/blob/main/doc/img/device_manager.png)
