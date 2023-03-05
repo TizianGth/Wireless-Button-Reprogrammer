@@ -44,15 +44,16 @@ namespace HyperXCloud2
         }
         private void Start(int Vid, int Pid)
         {
+            SetConfig(FileHandler.LoadConfig());
+            Apply();
+
             main.Start(Vid, Pid);
 
             Active.Text = main.Started.ToString();
         }
         private void Stop(object sender, RoutedEventArgs e)
         {
-            main.Stop();
-
-            Active.Text = main.Started.ToString();
+            Stop();
         }
         private void Stop()
         {
@@ -62,27 +63,48 @@ namespace HyperXCloud2
         }
         private void Apply(object sender, RoutedEventArgs e)
         {
+            Apply();
+        }
+        private void Apply()
+        {
+
+            main.Stop();
             try
             {
-                main.Stop();
                 main.Start(ParseHexStringToInt(Vid.Text), ParseHexStringToInt(Pid.Text));
-                if (!main.Started)
-                {
-                    main.Stop();
-                }
-
-                MediaHandler.PLAY_PAUSE = ParseHexStringToByte(Keycode1.Text);
-                MediaHandler.NEXT = ParseHexStringToByte(Keycode2.Text);
-                MediaHandler.PREV = ParseHexStringToByte(Keycode3.Text);
-
-                ClickHandler.ClickInterval = ParseStringToInt(Interval.Text);
-
-            } catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
             }
+            catch (Exception ex) { }
+            if (!main.Started)
+            {
+                main.Stop();
+            }
+            try
+            {
+                MediaHandler.PLAY_PAUSE = ParseHexStringToByte(Keycode1.Text);
+            }catch (Exception ex) { }
+            try
+            {
+                MediaHandler.NEXT = ParseHexStringToByte(Keycode2.Text);
+            }catch (Exception ex) { }
+            try
+            {
+                MediaHandler.PREV = ParseHexStringToByte(Keycode3.Text);
+            } catch (Exception ex) { }
+
+            try
+            {
+                ClickHandler.ClickInterval = ParseStringToInt(Interval.Text);
+            }catch (Exception ex) { }
+
+
+            Config config = new Config(Vid.Text, Pid.Text, Interval.Text, Keycode1.Text, Keycode2.Text, Keycode3.Text);
+            FileHandler.SaveConfig(config);
 
             Active.Text = main.Started.ToString();
+        }
+        private void SetConfig(Config config)
+        {
+            Vid.Text = config.variables[0]; Pid.Text = config.variables[1]; Interval.Text = config.variables[2]; Keycode1.Text = config.variables[3]; Keycode2.Text = config.variables[4]; Keycode3.Text = config.variables[5];
         }
         private int ParseStringToInt(string text)
         {

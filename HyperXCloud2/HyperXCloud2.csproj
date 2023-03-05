@@ -73,6 +73,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="src\ClickHandler.cs" />
+    <Compile Include="src\Config.cs" />
+    <Compile Include="src\FileHandler.cs" />
     <Compile Include="src\HidLibrary\Extensions.cs" />
     <Compile Include="src\HidLibrary\HidAsyncState.cs" />
     <Compile Include="src\HidLibrary\HidDevice.cs" />

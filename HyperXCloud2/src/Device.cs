@@ -38,10 +38,14 @@ namespace HyperXCloud2
         }
         public void Init()
         {
+
             // New thread to not freeze gui
             thread = new Thread(() =>
             {
-                var devices = HidDevices.Enumerate(Vid, Pid).ToList();
+                var devices = HidDevices.Enumerate(Vid, Pid).ToArray();
+
+                if (devices.Length == 0) return;
+
                 device = devices[2]; // HyperX splits its different controlls into different sub-HIDs; 2nd for mute button
 
                 if (device == null) return;
