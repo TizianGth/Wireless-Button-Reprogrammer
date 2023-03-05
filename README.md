@@ -12,14 +12,14 @@ but the default behaviour is:
 * 3 clicks = Previous
 
 ## Warning
-Because the mute functionality is handled on the headset it self you'll still mute/unmute your headset microphone.
+Because the mute functionality is handled on the headset it self you'll still mute/unmute your headset's microphone.
 Because of that I would advise you to only use this tool if you can live without your headset microphone.
 
 ## Supported devices
 * Windows only
 * HyperX Cloud II Wireless (DLS Version)
 
-Sadly it's only one at the moment, but if you want to use this tool but your device is not supported, feel free to contact me (e.g open an issue here on github).
+Sadly it's only one at the moment, but if you want to use this tool and your device is not supported, feel free to contact me (e.g open an issue here on github).
 
 ## Setup
 ### How to find you Vendor and Product ID:
