@@ -27,7 +27,7 @@ You can donload the .exe here on github under "Releases"
 ![device manager](https://github.com/GuthiYT/hyperx/blob/main/doc/img/device_manager.png)
 
 2. Now you have to find the right devince from the "HID-compliant consumer control" devices. Windows default devicve manager dosn't really let you know which device
-is which, so you either have to try all of the "HID-compliant consumer control" devices or download a 3rd party tool like [Busdog](https://github.com/djpnewton/busdog). But once you find out your IDs they won't change. \
+is which, so you either have to try all of the "HID-compliant consumer control" devices or download a 3rd party tool like [Busdog](https://github.com/djpnewton/busdog) or identify them in another way e.g the first time you plug the USB dongle in your PC. But once you find out your IDs they won't change. \
 ![HIDs](https://github.com/GuthiYT/hyperx/blob/main/doc/img/hid.png)
 
 3. To view the IDs, right click and select "Properties", then switch to "Details". There you should select "Hardware IDs" from the "Property" drop down menu. Now you can already
