@@ -6,11 +6,8 @@
 * [Latest update](#latest-update)
 * [Technologies](#technologies)
 ## General info
-Repurposes the mute button on the HyperX Cloud II Wireless (DTS), which you can use now to do 3 different actions, which you can programm yourself,
-but the default behaviour is:
-* 1 click = Pause/Resume
-* 2 clicks = Next
-* 3 clicks = Previous
+Repurposes the mute button on the HyperX Cloud II Wireless (DTS), which you can use now to do 3 different actions, which you can programm yourself. Now you can
+walk around and still pause/skip music!
 
 ## Warning
 Because the mute functionality is handled on the headset it self you'll still mute/unmute your headset's microphone.
