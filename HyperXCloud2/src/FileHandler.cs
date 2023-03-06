@@ -23,8 +23,9 @@ namespace HyperXCloud2
 
             for(int i = 0; i < text.Length; i++)
             {
-                config.variables[i] = text[i].Substring(text[i].IndexOf(": ") + 1);
+                config.variables[i] = text[i].Substring(text[i].IndexOf(':') + 2);
             }
+
             return config;
         }
         public static void WriteToFile(string path, string text)

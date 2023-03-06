@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Microsoft.Win32;
+
 namespace HyperXCloud2
 {
     /// <summary>
@@ -29,11 +31,24 @@ namespace HyperXCloud2
             main = new Main();
 
             Start(0x03F0, 0x0696);
+            SetStartup();
         }
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
             Process.GetCurrentProcess().Kill();
+        }
+        private void SetStartup()
+        {
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey
+                ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            if (!rk.GetValueNames().Contains("HyperX"))
+            {
+                rk.SetValue("HyperX", Environment.CurrentDirectory + "//HyperXCloud2.exe");
+            }
+
+
         }
 
         private void Start(object sender, RoutedEventArgs e)
@@ -96,8 +111,14 @@ namespace HyperXCloud2
                 ClickHandler.ClickInterval = ParseStringToInt(Interval.Text);
             }catch (Exception ex) { }
 
+            try
+            {
+                MediaHandler.VOLUME_AMOUNT = ParseStringToInt(VolumeStep.Text);
+            }
+            catch (Exception ex) { }
 
-            Config config = new Config(Vid.Text, Pid.Text, Interval.Text, Keycode1.Text, Keycode2.Text, Keycode3.Text);
+
+            Config config = new Config(Vid.Text, Pid.Text, Interval.Text, Keycode1.Text, Keycode2.Text, Keycode3.Text, VolumeStep.Text);
             FileHandler.SaveConfig(config);
 
             Active.Text = main.Started.ToString();
@@ -106,7 +127,13 @@ namespace HyperXCloud2
         {
             if(config == null) return;
 
-            Vid.Text = config.variables[0]; Pid.Text = config.variables[1]; Interval.Text = config.variables[2]; Keycode1.Text = config.variables[3]; Keycode2.Text = config.variables[4]; Keycode3.Text = config.variables[5];
+            if(config.variables[0] != null) Vid.Text = config.variables[0];
+            if (config.variables[1] != null) Pid.Text = config.variables[1];
+            if (config.variables[2] != null) Interval.Text = config.variables[2];
+            if (config.variables[3] != null) Keycode1.Text = config.variables[3];
+            if (config.variables[4] != null) Keycode2.Text = config.variables[4];
+            if (config.variables[5] != null) Keycode3.Text = config.variables[5];
+            if (config.variables[6] != null) VolumeStep.Text = config.variables[6];
         }
         private int ParseStringToInt(string text)
         {
@@ -123,5 +150,11 @@ namespace HyperXCloud2
             byte result = Convert.ToByte(text, 16);
             return result;
         }
+
+        public static Window GetWindow()
+        {
+            return Window.GetWindow(App.Current.MainWindow) as Window;
+        }
+
     }
 }

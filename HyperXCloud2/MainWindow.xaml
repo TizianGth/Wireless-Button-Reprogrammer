@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HyperXCloud2"
         mc:Ignorable="d"
-        Title="HyperXCloud2" Height="154" Width="400" Background="#2B2D31" ResizeMode="CanMinimize">
+        Title="HyperXCloud2" Height="160" Width="420" Background="#2B2D31" ResizeMode="CanMinimize">
     <Grid>
         <ListBox Name="controllerList" Margin="0,00,0,0" Background="#2B2D31" HorizontalAlignment="Center">
 
@@ -42,7 +42,7 @@
                                 </Setter.Value>
                             </Setter>
 
-                            <Setter Property="Margin" Value="0,0,10,0"></Setter>
+                            <Setter Property="Margin" Value="0,0,5,0"></Setter>
                         </Style>
                     </ListBox.ItemContainerStyle>
 
@@ -59,7 +59,7 @@
 
                     <StackPanel Margin="0,0,0,0">
                         <TextBlock Foreground="#AEAFB5" Background="#313338">Interval (milliseconds)</TextBlock>
-                        <TextBox Foreground="#AEAFB5" Background="#313338" Text="800" Name="Interval"/>
+                        <TextBox Foreground="#AEAFB5" Background="#313338" Text="500" Name="Interval"/>
                     </StackPanel>
 
 
@@ -85,7 +85,7 @@
                                 </Setter.Value>
                             </Setter>
 
-                            <Setter Property="Margin" Value="0,0,10,0"></Setter>
+                            <Setter Property="Margin" Value="0,0,5,0"></Setter>
                         </Style>
                     </ListBox.ItemContainerStyle>
 
@@ -106,7 +106,13 @@
                     </StackPanel>
 
                     <StackPanel>
-                        <TextBlock Foreground="#AEAFB5" Background="#2B2D31">Active</TextBlock>
+                        <TextBlock Foreground="#AEAFB5" Background="#313338">Volume step</TextBlock>
+                        <TextBox Foreground="#AEAFB5" Background="#313338" Text="5" Name="VolumeStep"/>
+
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Foreground="#AEAFB5" Background="#313338">Active</TextBlock>
                         <TextBox IsReadOnly="True" Foreground="#AEAFB5" Background="#313338" Name="Active">False</TextBox>
                     </StackPanel>
 

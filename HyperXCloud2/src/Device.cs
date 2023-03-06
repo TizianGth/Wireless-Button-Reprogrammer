@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -11,24 +12,21 @@ namespace HyperXCloud2
 {
     public class Device
     {
-        public Device(int _vid, int _pid)
+        public Device(int vid, int pid, int index, string[] bytes)
         {
-            Vid = _vid;
-            Pid = _pid;
+            Vid = vid;
+            Pid = pid;
+            Index = index;
+            Bytes = bytes;
         }
 
-        // TODO: LET USER INPUT THEIR OWN
-        public int Vid;// Vendor ID
+        public int Vid; // Vendor ID
         public int Pid; // Product ID
+        public int Index; // Sub-HID device ID 2 = Mute; 0 = Volume Conmtroll
+        public string[] Bytes;
 
-        // TODO: Maybe define this in a list of strings and just put the recieved bytes together to one string and compare
-        private static List<byte[]> BYTES_TO_LOOK_FOR = new List<byte[]> // All the mesured bytes associated with pressing the "mute" button
-        { new byte[] { 255, 187, 32, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 0, 0 }, new byte[] { 255, 187, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 0, 0 },
-          new byte[] { 255, 187, 32, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, new byte[] { 255, 187, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-        };
+        private HidDevice device;
 
-
-        private static HidDevice device;
 
         Thread thread;
 
@@ -36,9 +34,10 @@ namespace HyperXCloud2
         {
             thread.Abort();
         }
+
         public void Init()
         {
-
+            
             // New thread to not freeze gui
             thread = new Thread(() =>
             {
@@ -46,7 +45,7 @@ namespace HyperXCloud2
 
                 if (devices.Length == 0) return;
 
-                device = devices[2]; // HyperX splits its different controlls into different sub-HIDs; 2nd for mute button
+                device = devices[Index]; 
 
                 if (device == null) return;
 
@@ -54,51 +53,64 @@ namespace HyperXCloud2
 
                 device.MonitorDeviceEvents = true;
 
-                while (device != null && device.IsConnected)
+                while (device != null)
                 {
+
+
                     ReportHandler();
+                    // Thread.Sleep(10);
+
                 }
 
             });
 
             thread.Start();
+
         }
 
         private void ReportHandler()
         {
+            if (Index == 0)
+            {
+            }
             byte[] data = device.ReadReport().Data;
 
             CheckForDesiredBytes(data);
-
-            string output = "";
-            for (int i = 0; i < data.Length; i++)
-            {
-                output += data[i] + " ";
-            }
-
-            Console.WriteLine(output);
         }
 
         private void CheckForDesiredBytes(byte[] data)
         {
-            for (int sequence = 0; sequence < BYTES_TO_LOOK_FOR.Count(); sequence++)
+            string byteStr = BytesToString(data);
+
+            if (byteStr.Length == 0) return;
+            if(Bytes == null || Bytes.Length == 0) return;
+
+            if (ContainsByte(byteStr)) return;
+
+        }
+
+        private bool ContainsByte(string bytes)
+        {
+            for (int sequence = 0; sequence < Bytes.Length; sequence++)
             {
-                if (data.Length == BYTES_TO_LOOK_FOR[sequence].Length)
+                if (bytes == Bytes[sequence])
                 {
-                    for (int i = 0; i < data.Length; i++)
-                    {
-                        if (data[i] != BYTES_TO_LOOK_FOR[sequence][i])
-                        {
-                            break;
-                        }
-                        if (i == data.Length - 1)
-                        {
-                            ClickHandler.HandleClick();
-                            return;
-                        }
-                    }
+                    Action();
+                    return true;
                 }
             }
+            return false;
         }
+        private string BytesToString(byte[] data)
+        {
+            string result = "";
+            for (int i = 0; i < data.Length; i++)
+            {
+                result += data[i];
+            }
+            return result;
+        }
+
+        public virtual void Action() { }
     }
 }

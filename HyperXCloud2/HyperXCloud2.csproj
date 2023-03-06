@@ -72,8 +72,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="src\Actions\VolumeDown.cs" />
+    <Compile Include="src\AudioManager.cs" />
+    <Compile Include="src\ByteToLookFor.cs" />
     <Compile Include="src\ClickHandler.cs" />
     <Compile Include="src\Config.cs" />
+    <Compile Include="src\Device.cs" />
     <Compile Include="src\FileHandler.cs" />
     <Compile Include="src\HidLibrary\Extensions.cs" />
     <Compile Include="src\HidLibrary\HidAsyncState.cs" />
@@ -89,9 +93,10 @@
     <Compile Include="src\HidLibrary\IHidDevice.cs" />
     <Compile Include="src\HidLibrary\IHidEnumerator.cs" />
     <Compile Include="src\HidLibrary\NativeMethods.cs" />
-    <Compile Include="src\Device.cs" />
+    <Compile Include="src\Actions\Mute.cs" />
     <Compile Include="src\Main.cs" />
     <Compile Include="src\MediaHandler.cs" />
+    <Compile Include="src\Actions\VolumeUp.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
