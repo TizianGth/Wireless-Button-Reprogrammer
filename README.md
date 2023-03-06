@@ -3,6 +3,7 @@
 * [Warning](#warning)
 * [Supported devices](#supported-devices)
 * [Setup](#setup)
+* [Latest update](#latest-update)
 * [Technologies](#technologies)
 ## General info
 Repurposes the mute button on the HyperX Cloud II Wireless (DTS), which you can use now to do 3 different actions, which you can programm yourself,
@@ -42,8 +43,13 @@ see the Vendor ID (the 4 numbers after "VID_") and the Product ID (the 4 numbers
 To change what happens after each click, refer to this [Site](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes) to get your desired
 keycodes, then enter them in the program, click "Apply" and "Start".
 
+## Latest update:
+### 0.1.2:
+* Added function to configure the Volume step on the headset. Before you could only go in steps of 2 now you can set this to what ever you want.
+
 ## Technologies
 * Visual Studio's WPF
 * .NET 4.7.2
+* [AudioManager](https://gist.github.com/sverrirs/d099b34b7f72bb4fb386)
 * [HIDLibrary](https://github.com/mikeobrien/HidLibrary)
 	
