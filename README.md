@@ -6,7 +6,7 @@
 * [Latest update](#latest-update)
 * [Technologies](#technologies)
 ## General info
-Repurposes the mute button on the HyperX Cloud II Wireless (DTS), which you can use now to do 3 different actions, which you can programm yourself. Now you can
+Repurposes the mute button on the HyperX Cloud II Wireless (DTS) which you can use now to do 3 different actions that you can programm yourself. Now you can
 walk around and still pause/skip music!
 
 ## Warning
