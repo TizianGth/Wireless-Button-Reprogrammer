@@ -35,19 +35,22 @@ namespace HyperXCloud2
         public static extern IntPtr SendMessageW(IntPtr hWnd, int Msg,IntPtr wParam, IntPtr lParam);
         public static void VolumeUp()
         {
-            int wanted = Clamp(VOLUME_CURRENT + VOLUME_AMOUNT, 0, 100);
-            Console.WriteLine(wanted);
-            VideoPlayerController.AudioManager.SetMasterVolume(wanted);
 
+            int wanted = Clamp(VOLUME_CURRENT + VOLUME_AMOUNT, 0, 100);
             VOLUME_CURRENT = wanted;
+
+            if (VOLUME_AMOUNT == 2) return;
+
+            VideoPlayerController.AudioManager.SetMasterVolume(wanted);
         }
         public static void VolumeDown()
         {
             int wanted = Clamp(VOLUME_CURRENT - VOLUME_AMOUNT, 0, 100);
-            Console.WriteLine(wanted);
-            VideoPlayerController.AudioManager.SetMasterVolume(wanted);
-
             VOLUME_CURRENT = wanted;
+
+            if (VOLUME_AMOUNT == 2) return;
+
+            VideoPlayerController.AudioManager.SetMasterVolume(wanted);
         }
 
         private static int Clamp(int value, int min, int max)

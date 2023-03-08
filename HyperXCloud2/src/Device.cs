@@ -55,11 +55,7 @@ namespace HyperXCloud2
 
                 while (device != null)
                 {
-
-
                     ReportHandler();
-                    // Thread.Sleep(10);
-
                 }
 
             });
