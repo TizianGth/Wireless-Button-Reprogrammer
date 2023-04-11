@@ -23,18 +23,15 @@ Sadly it's only one at the moment, but if you want to use this tool and your dev
 ### Download
 You can donload the .exe here on github under "Releases"
 ### How to find you Vendor and Product ID:
-1. Open your Device Manager and expand "Human Interface Devices".\
-![device manager](https://github.com/GuthiYT/hyperx/blob/main/doc/img/device_manager.png)
+To find your 2 IDs you basically have 2 ways of doing so: 1. Trial and error using your device manager (not advised) or 2. using a third party tool like [Busdog](https://github.com/djpnewton/busdog). Here you will only find documentation how to find your IDs via busdog .\
 
-2. Now you have to find the right devince from the "HID-compliant consumer control" devices. Windows default devicve manager dosn't really let you know which device
-is which, so you either have to try all of the "HID-compliant consumer control" devices or download a 3rd party tool like [Busdog](https://github.com/djpnewton/busdog) or identify them in another way e.g the first time you plug the USB dongle in your PC. But once you find out your IDs they won't change. \
-![HIDs](https://github.com/GuthiYT/hyperx/blob/main/doc/img/hid.png)
+1. Install and open [Busdog](https://github.com/djpnewton/busdog). Here you will have to check "Automaticly trace new Devices" on the bottom left hand corner. \
+![BusdogTraceNew](https://github.com/GuthiYT/hyperxrebutton/blob/main/doc/img/busdog_trace_new.png)
 
-3. To view the IDs, right click and select "Properties", then switch to "Details". There you should select "Hardware IDs" from the "Property" drop down menu. Now you can already
-see the Vendor ID (the 4 numbers after "VID_") and the Product ID (the 4 numbers after "PID_"). \
-![VPID](https://github.com/GuthiYT/hyperx/blob/main/doc/img/vid_pid.png)
+2. Make sure every box is unchecked then un- and replug your HyperX USB dongle. Now one Device should be checked with its multiple "sub-devices". Now hover over one of them, look for the 4 letterrs after "VID_" and "PID_" and write them down somewhere. \
+![BusdogDevice](https://github.com/GuthiYT/hyperxrebutton/blob/main/doc/img/busdog_device.png)
 
-4. Now just input these in the program, click "Apply" and "Start".
+4. Now just input your VID and PID in the program, click "Apply" and "Start".
 
 ### How to change keycodes
 To change what happens after each click, refer to this [Site](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes) to get your desired
