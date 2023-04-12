@@ -31,8 +31,6 @@ namespace HyperXCloud2
             keybd_event(PREV, 0, 1, IntPtr.Zero);
         }
 
-        [DllImport("user32.dll")]
-        public static extern IntPtr SendMessageW(IntPtr hWnd, int Msg,IntPtr wParam, IntPtr lParam);
         public static void VolumeUp()
         {
 

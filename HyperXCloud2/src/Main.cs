@@ -10,51 +10,33 @@ namespace HyperXCloud2
     {
         public bool Started { get; private set; } = false;
 
-        public Device testDevice { get; private set; }
-        public Mute muteDevice { get; private set; }
-        public VolumeUp volumeUpDevice { get; private set; }
-        public VolumeDown volumeDownDevice { get; private set; }
+        public Device device { get; private set; }
 
         public Main()
         {
         }
 
-
-    public void Start(int Vid, int Pid)
+        int devices = 0;
+        public int Start(int Vid, int Pid)
         {
-            if (Started) return;
+
+            if (Started) return devices;
 
             MediaHandler.VOLUME_CURRENT = (int)VideoPlayerController.AudioManager.GetMasterVolume();
 
-            //testDevice = new Device(Vid, Pid, 0, null);
-            //testDevice.Init();
-
-            muteDevice = new Mute(Vid, Pid);
-            muteDevice.Init();
-
-            volumeUpDevice = new VolumeUp(Vid, Pid);
-            volumeUpDevice.Init();
-
-           volumeDownDevice = new VolumeDown(Vid, Pid);
-           volumeDownDevice.Init();
+            device = new Device(Vid, Pid);
+            devices = device.Init();
 
             Started = true;
+
+            return devices;
         }
         public void Stop()
         {
             if(!Started) return;
 
-            //testDevice.Stop();
-           //testDevice = null;
-
-            muteDevice.Stop();
-            muteDevice = null;
-
-            volumeUpDevice.Stop();
-            volumeUpDevice = null;
-
-            volumeDownDevice.Stop();
-            volumeDownDevice = null;
+            device.Stop();
+            device = null;
 
             Started = false;
         }

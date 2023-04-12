@@ -12,21 +12,14 @@ namespace HyperXCloud2
 {
     public class Device
     {
-        public Device(int vid, int pid, int index, string[] bytes)
+        public Device(int vid, int pid)
         {
             Vid = vid;
             Pid = pid;
-            Index = index;
-            Bytes = bytes;
         }
 
         public int Vid; // Vendor ID
         public int Pid; // Product ID
-        public int Index; // Sub-HID device ID 2 = Mute; 0 = Volume Conmtroll
-        public string[] Bytes;
-
-        private HidDevice device;
-
 
         Thread thread;
 
@@ -35,63 +28,90 @@ namespace HyperXCloud2
             thread.Abort();
         }
 
-        public void Init()
+        public int Init()
         {
-            
-            // New thread to not freeze gui
-            thread = new Thread(() =>
+            var devices = HidDevices.Enumerate(Vid, Pid).ToList();
+
+            for (int i = 0; i < devices.Count(); i++)
             {
-                var devices = HidDevices.Enumerate(Vid, Pid).ToArray();
+                if (devices.Count == 0)
+                {
+                    return 0;
+                }
 
-                if (devices.Length == 0) return;
+                HidDevice device = devices[i];
 
-                device = devices[Index]; 
-
-                if (device == null) return;
+                if (device == null) break;
 
                 device.OpenDevice();
 
                 device.MonitorDeviceEvents = true;
-
-                while (device != null)
-                {
-                    ReportHandler();
-                }
-
-            });
-
-            thread.Start();
-
-        }
-
-        private void ReportHandler()
-        {
-            if (Index == 0)
-            {
             }
-            byte[] data = device.ReadReport().Data;
 
-            CheckForDesiredBytes(data);
+            Debug.Write("test");
+
+            for (int i = 0; i < devices.Count(); i++)
+            {
+                HidDevice device = devices[i];
+
+                // New thread to not freeze gui
+                thread = new Thread(() =>
+                {
+
+                    while (device != null)
+                    {
+                        ReportHandler(device);
+                    }
+                    Thread.Sleep(5); // 1000 / 5 => RportHandler Gets called 200 times a second
+
+                });
+                thread.Start();
+            }
+            
+
+            return devices.Count;
+
         }
 
-        private void CheckForDesiredBytes(byte[] data)
+        private bool CheckForValidDevices(ref List<HidDevice> devices)
         {
+            return devices.Count > 0;
+        }
+
+        private void ReportHandler(HidDevice device)
+        {
+            byte[] data = device.ReadReport(5).Data;
+
             string byteStr = BytesToString(data);
 
-            if (byteStr.Length == 0) return;
-            if(Bytes == null || Bytes.Length == 0) return;
+            if (ContainsByte(byteStr, Bytes.VOLUME_UP))
+            {
+                MediaHandler.VolumeUp();
+            }
 
-            if (ContainsByte(byteStr)) return;
+            else if (ContainsByte(byteStr, Bytes.VOLUME_DOWN))
+            {
+                MediaHandler.VolumeDown();
+            }
+            else if (ContainsByte(byteStr, Bytes.MUTE))
+            {
+                ClickHandler.HandleClick();
+            }
+
+            // REMOVE UNUSED "DEVICE" FROM DEVICES TO SAVE PROCESSING POWER
+            else
+            {
+
+            }
 
         }
 
-        private bool ContainsByte(string bytes)
+        private bool ContainsByte(string bytes, string[] bytesWanted)
         {
-            for (int sequence = 0; sequence < Bytes.Length; sequence++)
+            for (int sequence = 0; sequence < bytesWanted.Length; sequence++)
             {
-                if (bytes == Bytes[sequence])
+                if (bytes == bytesWanted[sequence])
                 {
-                    Action();
                     return true;
                 }
             }
@@ -107,6 +127,5 @@ namespace HyperXCloud2
             return result;
         }
 
-        public virtual void Action() { }
     }
 }

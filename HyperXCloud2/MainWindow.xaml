@@ -62,6 +62,11 @@
                         <TextBox Foreground="#AEAFB5" Background="#313338" Text="500" Name="Interval"/>
                     </StackPanel>
 
+                    <StackPanel>
+                        <TextBlock Foreground="#AEAFB5" Background="#313338">Devices</TextBlock>
+                        <TextBox IsReadOnly="True" Foreground="#AEAFB5" Background="#313338" Name="DeviceAmount">0</TextBox>
+                    </StackPanel>
+
 
                 </ListBox>
             </ListBoxItem>

@@ -53,7 +53,9 @@ namespace HyperXCloud2
 
         private void Start(object sender, RoutedEventArgs e)
         {
-            main.Start(ParseHexStringToInt(Vid.Text), ParseHexStringToInt(Pid.Text));
+            int devices = main.Start(ParseHexStringToInt(Vid.Text), ParseHexStringToInt(Pid.Text));
+
+            DeviceAmount.Text = devices.ToString();
 
             Active.Text = main.Started.ToString();
         }
@@ -86,9 +88,13 @@ namespace HyperXCloud2
             main.Stop();
             try
             {
-                main.Start(ParseHexStringToInt(Vid.Text), ParseHexStringToInt(Pid.Text));
+                int devices =  main.Start(ParseHexStringToInt(Vid.Text), ParseHexStringToInt(Pid.Text));
+
+                DeviceAmount.Text = devices.ToString();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+
+            }
             if (!main.Started)
             {
                 main.Stop();
