@@ -5,6 +5,9 @@ using System.Windows.Interop;
 
 namespace HyperXCloud2
 {
+    /// <summary>
+    /// Handles the user defined key codes and custom volume up/down step
+    /// </summary>
     public static class MediaHandler
     {
         // THESE CAN BE SWAPED TO DIFFERENT KEYCODES BY USER TO HAVE A DIFFERENT FUNCTION!!!
@@ -33,7 +36,6 @@ namespace HyperXCloud2
 
         public static void VolumeUp()
         {
-
             int wanted = Clamp(VOLUME_CURRENT + VOLUME_AMOUNT, 0, 100);
             VOLUME_CURRENT = wanted;
 
@@ -51,15 +53,20 @@ namespace HyperXCloud2
             VideoPlayerController.AudioManager.SetMasterVolume(wanted);
         }
 
+        /// <summary>
+        /// Clamps int to min and max value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         private static int Clamp(int value, int min, int max)
         {
-            if(value > max)
-            {
+            if(value > max) {
                 return max;
-            } else if(value < min){
+            } else if(value < min) {
                 return min;
-            } else
-            {
+            } else {
                 return value;
             }
         }

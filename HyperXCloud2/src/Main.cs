@@ -6,23 +6,20 @@ using System.Threading.Tasks;
 
 namespace HyperXCloud2
 {
+    /// <summary>
+    /// Handles the start and stop process
+    /// </summary>
     public class Main
     {
         public bool Started { get; private set; } = false;
-
         public Device device { get; private set; }
-
-        public Main()
-        {
-        }
-
         int devices = 0;
+
+        public Main(){}
+
         public int Start(int Vid, int Pid)
         {
-
             if (Started) return devices;
-
-            MediaHandler.VOLUME_CURRENT = (int)VideoPlayerController.AudioManager.GetMasterVolume();
 
             device = new Device(Vid, Pid);
             devices = device.Init();

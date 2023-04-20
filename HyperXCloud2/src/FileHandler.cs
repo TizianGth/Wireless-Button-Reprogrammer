@@ -7,33 +7,20 @@ using System.Threading.Tasks;
 
 namespace HyperXCloud2
 {
+
+    /// <summary>
+    /// Handles basic file reading/writing
+    /// </summary>
     internal class FileHandler
     {
-        public static void SaveConfig(Config config)
-        {
-            WriteToFile("config.yml", config.ToString());
-        }
-        public static Config LoadConfig()
-        {
-            if (!File.Exists(Environment.CurrentDirectory + "//config.yml")) return null;
-
-            Config config = new Config();
-
-            string[] text = ReadLinesFromFile("config.yml");
-
-            for(int i = 0; i < text.Length; i++)
-            {
-                config.variables[i] = text[i].Substring(text[i].IndexOf(':') + 2);
-            }
-
-            return config;
-        }
         public static void WriteToFile(string path, string text)
         {
             File.WriteAllText(Environment.CurrentDirectory + "//" + path, text);
         }
         public static string[] ReadLinesFromFile(string path)
         {
+            if (!File.Exists(Environment.CurrentDirectory + "//" + path)) return null;
+
             return File.ReadLines(Environment.CurrentDirectory + "//" + path).ToArray();
         }
     }

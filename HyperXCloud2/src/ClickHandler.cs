@@ -15,6 +15,10 @@ namespace HyperXCloud2
         private static Stopwatch clock; // tracks time between clicks
         private static int censecutiveClicks = 0; // tracks number of consecutive clicks in one interval
 
+        /// <summary>
+        /// Handles the click event and calls diferent actions depending on how many times
+        /// it was clicked in a row
+        /// </summary>
         public static void HandleClick()
         {
             // Starts Clock at the very first click or if interval elapsed
@@ -28,6 +32,13 @@ namespace HyperXCloud2
          
             ClickAction(censecutiveClicks);
         }
+
+        /// <summary>
+        /// Checks if clicked then does the action associated with clicking once, then either
+        /// 1. User presses 3 times (max) or
+        /// 2. User presses 2 times and interval elapsed
+        /// </summary>
+        /// <param name="clicks"></param>
         private static void ClickAction(int clicks)
         {
             if(clicks == 1)
@@ -35,8 +46,6 @@ namespace HyperXCloud2
                 MediaHandler.PauseResumeAudio();
             } else if(clicks == 2)
             {
-                // We cant determin if user will press button 2 or 3 times -> we wait until either 1. user pressed 3 times (max) or 2. user pressed
-                // 2 times and interval elapsed
                 WaitForIntervalToFinish();
             }
             else if (clicks == 3)
@@ -46,6 +55,9 @@ namespace HyperXCloud2
             }
         }
 
+        /// <summary>
+        /// Starts a new Thread to handle the waiting process until the interval has elapsed
+        /// </summary>
         private static void WaitForIntervalToFinish()
         {
             // Start a new seperate thread
@@ -56,7 +68,7 @@ namespace HyperXCloud2
                 {
 
                 }
-                // Check if in the elapsed time frame another click occurred
+                // Check if in the elapsed time frame no other click occurred
                 if (censecutiveClicks == 2)
                 {
                     MediaHandler.NextAudio();

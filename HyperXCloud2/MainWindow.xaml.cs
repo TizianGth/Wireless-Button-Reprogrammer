@@ -19,7 +19,6 @@ using Microsoft.Win32;
 namespace HyperXCloud2
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -61,7 +60,7 @@ namespace HyperXCloud2
         }
         private void Start(int Vid, int Pid)
         {
-            SetConfig(FileHandler.LoadConfig());
+            SetConfig(Config.LoadConfig());
             Apply();
 
             main.Start(Vid, Pid);
@@ -125,7 +124,7 @@ namespace HyperXCloud2
 
 
             Config config = new Config(Vid.Text, Pid.Text, Interval.Text, Keycode1.Text, Keycode2.Text, Keycode3.Text, VolumeStep.Text);
-            FileHandler.SaveConfig(config);
+            config.SaveConfig();
 
             Active.Text = main.Started.ToString();
         }
