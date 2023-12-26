@@ -1,5 +1,3 @@
-## BROKEN CURRENTLY (26/12/2023 21:03), currently fixing: Please come back tomorrow! 
-
 ## Table of contents
 * [General info](#general-info)
 * [Warning](#warning)
