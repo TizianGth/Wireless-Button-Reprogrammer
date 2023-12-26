@@ -33,7 +33,7 @@ To find your 2 IDs you basically have 2 ways of doing so: 1. Trial and error usi
 1. Install and open [Busdog](https://github.com/djpnewton/busdog). Here you will have to check "Automaticly trace new Devices" on the bottom left hand corner. \
 ![BusdogTraceNew](https://github.com/GuthiYT/hyperxrebutton/blob/main/doc/img/busdog_trace_new.png)
 
-2. Make sure every box is unchecked then un- and replug your HyperX USB dongle. Now one Device should be checked with its multiple "sub-devices". Now hover over one of them, look for the 4 letterrs after "VID_" and "PID_" and write them down somewhere. \
+2. Make sure every box is unchecked then un- and replug your headset's USB dongle. Now one Device should be checked with its multiple "sub-devices". Now hover over one of them, look for the 4 letterrs after "VID_" and "PID_" and write them down somewhere. \
 ![BusdogDevice](https://github.com/GuthiYT/hyperxrebutton/blob/main/doc/img/busdog_device.png)
 
 4. Now just input your VID and PID in the program, click "Apply" and "Start".
