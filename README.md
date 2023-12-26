@@ -14,7 +14,7 @@ The original functionality is handled locally on the headset itself so it still 
 Because of that I would advise you to only use this tool if you can live without the origianal functionality. For example, I don't use my microphone on my headset, so I can tolerate not having the original mute function.
 
 ## Supported devices
-### [How to get your device to be supported](how-to-get-your-device-to-be-supported)
+### [How to get your device to be supported](#how-to-get-your-device-to-be-supported)
 * Windows only
 * HyperX Cloud II Wireless (DTS Version)
 
