@@ -3,7 +3,7 @@
 * [Warning](#warning)
 * [Supported devices](#supported-devices)
 * [Setup](#setup)
-* [How to get your device to be supported](how-to-get-your-device-to-be-supported)
+* [How to get your device to be supported](#how-to-get-your-device-to-be-supported)
 * [Technologies](#technologies)
 ## General info
 Repurposes any button on (theoretically) any wireless headset ([Supported devices](#supported-devices)) to do 3 different actions that you can programm yourself. My personal favourite is that I can now
@@ -38,7 +38,7 @@ To find your 2 IDs you basically have 2 ways of doing so: 1. Trial and error usi
 To change what happens after each click, refer to this [Site](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes) to get your desired
 keycodes, then enter them in the program, click "Apply" and "Start".
 
-## How to get your device to be supported:
+## How to get your device to be supported
 * Execute WBR-Tester.exe ([Releases](https://github.com/TizianGuth/Wireless-Button-Reprogrammer/releases)) and follow the instruction.
 * Contact me as told in the instructions.
 
