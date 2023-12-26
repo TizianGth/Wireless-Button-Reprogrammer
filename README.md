@@ -3,21 +3,22 @@
 * [Warning](#warning)
 * [Supported devices](#supported-devices)
 * [Setup](#setup)
-* [Latest update](#latest-update)
+* [How to get your device to be supported](how-to-get-your-device-to-be-supported)
 * [Technologies](#technologies)
 ## General info
-Repurposes the mute button on the HyperX Cloud II Wireless (DTS) which you can use now to do 3 different actions that you can programm yourself. Now you can
-walk around and still pause/skip music!
+Repurposes any button on (theoretically) any wireless headset ([Supported devices](#supported-devices)) to do 3 different actions that you can programm yourself. My personal favourite is that I can now
+walk around my room and still pause/skip music!
 
 ## Warning
-Because the mute functionality is handled on the headset it self you'll still mute/unmute your headset's microphone.
-Because of that I would advise you to only use this tool if you can live without your headset microphone.
+The original functionality is handled locally on the headset itself so it still gets triggered.
+Because of that I would advise you to only use this tool if you can live without the origianal functionality. For example, I don't use my microphone on my headset, so I can tolerate not having the original mute function.
 
 ## Supported devices
+### [How to get your device to be supported](how-to-get-your-device-to-be-supported)
 * Windows only
 * HyperX Cloud II Wireless (DTS Version)
 
-Sadly it's only one at the moment, but if you want to use this tool and your device is not supported, feel free to contact me (e.g open an issue here on github).
+Sadly it's only one at the moment, but if you want to use this tool and your device is not supported, feel free to contact me because I have to adjust the application to each device individually (you could e.g open an issue here on github).
 
 ## Setup
 ### Download
@@ -37,9 +38,9 @@ To find your 2 IDs you basically have 2 ways of doing so: 1. Trial and error usi
 To change what happens after each click, refer to this [Site](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes) to get your desired
 keycodes, then enter them in the program, click "Apply" and "Start".
 
-## Latest update:
-### 0.1.2:
-* Added function to configure the Volume step on the headset. Before you could only go in steps of 2 now you can set this to what ever you want.
+## How to get your device to be supported:
+* Execute WBR-Tester.exe ([Releases](https://github.com/TizianGuth/Wireless-Button-Reprogrammer/releases)) and follow the instruction.
+* Contact me as told in the instructions.
 
 ## Technologies
 * Visual Studio's WPF
