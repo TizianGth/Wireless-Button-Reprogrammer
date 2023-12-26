@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace HyperXCloud2.Properties
+namespace WBR.Properties
 {
     /// <summary>
     ///   Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.

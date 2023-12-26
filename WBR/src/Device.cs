@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 using HidLibrary;
 
-namespace HyperXCloud2
+namespace WBR
 {
     /// <summary>
     /// Handles input from a HID device based on Vendor and Product ID
@@ -73,7 +73,6 @@ namespace HyperXCloud2
                     {
                         ReportHandler(device);
                     }
-                    Thread.Sleep(5); // 1000 / 5 => RportHandler Gets called 200 times a second
                 });
                 threads[i].Start();
             }
@@ -87,7 +86,7 @@ namespace HyperXCloud2
         /// <param name="device"></param>
         private void ReportHandler(HidDevice device)
         {
-            byte[] data = device.ReadReport(5).Data;
+            byte[] data = device.ReadReport().Data;
             string byteStr = BytesToString(data);
 
             if (ContainsByte(byteStr, Bytes.VOLUME_UP))

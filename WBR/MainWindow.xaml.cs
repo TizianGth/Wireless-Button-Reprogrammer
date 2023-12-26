@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 using Microsoft.Win32;
 
-namespace HyperXCloud2
+namespace WBR
 {
     /// <summary>
     /// </summary>

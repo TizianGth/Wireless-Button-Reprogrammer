@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace HyperXCloud2
+namespace WBR
 {
     /// <summary>
     /// Handles the user defined key codes and custom volume up/down step

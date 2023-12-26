@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HyperXCloud2
+namespace WBR
 {
     /// <summary>
     /// Saves/reads all needed config variables and converts them to one single string

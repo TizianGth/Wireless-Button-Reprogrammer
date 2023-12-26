@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace HyperXCloud2
+namespace WBR
 {
     /// <summary>
     /// Interaktionslogik für "App.xaml"

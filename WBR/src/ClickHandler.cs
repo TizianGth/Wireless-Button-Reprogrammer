@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HyperXCloud2
+namespace WBR
 {
     public static class ClickHandler
     {
