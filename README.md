@@ -1,4 +1,5 @@
 ## BROKEN ATM (26/12/23 22:34 UTC) WORKING ON A FIX
+There seems to be an issue with the library for usb devices i'm using. But to be sure i'd need someone who wants to test it out with me, so please let me know
 
 ## Table of contents
 * [General info](#general-info)
