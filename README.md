@@ -2,8 +2,8 @@
 * [General info](#general-info)
 * [Warning](#warning)
 * [Supported devices](#supported-devices)
-* [Setup](#setup)
 * [How to get your device to be supported](#how-to-get-your-device-to-be-supported)
+* [Setup](#setup)
 * [Technologies](#technologies)
 ## General info
 Repurposes any button on (theoretically) any wireless headset ([Supported devices](#supported-devices)) to do 3 different actions that you can programm yourself. My personal favourite is that I can now
@@ -19,6 +19,10 @@ Because of that I would advise you to only use this tool if you can live without
 * HyperX Cloud II Wireless (DTS Version)
 
 Sadly it's only one at the moment, but if you want to use this tool and your device is not supported, feel free to contact me because I have to adjust the application to each device individually (you could e.g open an issue here on github).
+
+## How to get your device to be supported
+* Execute WBR-Tester.exe ([Releases](https://github.com/TizianGuth/Wireless-Button-Reprogrammer/releases)) and follow the instruction.
+* Contact me as told in the instructions.
 
 ## Setup
 ### Download
@@ -38,9 +42,6 @@ To find your 2 IDs you basically have 2 ways of doing so: 1. Trial and error usi
 To change what happens after each click, refer to this [Site](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes) to get your desired
 keycodes, then enter them in the program, click "Apply" and "Start".
 
-## How to get your device to be supported
-* Execute WBR-Tester.exe ([Releases](https://github.com/TizianGuth/Wireless-Button-Reprogrammer/releases)) and follow the instruction.
-* Contact me as told in the instructions.
 
 ## Technologies
 * Visual Studio's WPF
