@@ -1,6 +1,3 @@
-## BROKEN ATM (26/12/23 22:34 UTC) WORKING ON A FIX
-Update (27/12/23 16:25 UTC) There seems to be a problem with the library for usb devices i'm using, if the applciation dosn't work for you please conmtact me
-
 ## Table of contents
 * [General info](#general-info)
 * [Warning](#warning)
