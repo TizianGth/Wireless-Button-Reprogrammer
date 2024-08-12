@@ -6,14 +6,15 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{ED0DE598-7F12-4017-AE36-9BFE1ACC5970}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>HyperXCloud2</RootNamespace>
-    <AssemblyName>HyperXCloud2</AssemblyName>
+    <RootNamespace>WBR</RootNamespace>
+    <AssemblyName>WBR</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -51,9 +51,33 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LibUsbDotNet.LibUsbDotNet, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c677239abe1e02a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibUsbDotNet.2.2.29\lib\net45\LibUsbDotNet.LibUsbDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,28 +96,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="src\AudioManager.cs" />
-    <Compile Include="src\Bytes.cs" />
-    <Compile Include="src\ClickHandler.cs" />
-    <Compile Include="src\Config.cs" />
-    <Compile Include="src\Device.cs" />
-    <Compile Include="src\FileHandler.cs" />
-    <Compile Include="src\HidLibrary\Extensions.cs" />
-    <Compile Include="src\HidLibrary\HidAsyncState.cs" />
-    <Compile Include="src\HidLibrary\HidDevice.cs" />
-    <Compile Include="src\HidLibrary\HidDeviceAttributes.cs" />
-    <Compile Include="src\HidLibrary\HidDeviceCapabilities.cs" />
-    <Compile Include="src\HidLibrary\HidDeviceData.cs" />
-    <Compile Include="src\HidLibrary\HidDeviceEventMonitor.cs" />
-    <Compile Include="src\HidLibrary\HidDevices.cs" />
-    <Compile Include="src\HidLibrary\HidFastReadDevice.cs" />
-    <Compile Include="src\HidLibrary\HidFastReadEnumerator.cs" />
-    <Compile Include="src\HidLibrary\HidReport.cs" />
-    <Compile Include="src\HidLibrary\IHidDevice.cs" />
-    <Compile Include="src\HidLibrary\IHidEnumerator.cs" />
-    <Compile Include="src\HidLibrary\NativeMethods.cs" />
-    <Compile Include="src\Main.cs" />
-    <Compile Include="src\MediaHandler.cs" />
+    <Compile Include="AudioManager.cs" />
+    <Compile Include="Bytes.cs" />
+    <Compile Include="ClickHandler.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Device.cs" />
+    <Compile Include="FileHandler.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="MediaHandler.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -125,7 +135,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="src\HidLibrary\HidLibrary.csproj" />
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -145,6 +157,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HidLibrary\HidLibrary.csproj">
+      <Project>{f617c8b1-2e54-43d9-9aaf-c42608083ee8}</Project>
+      <Name>HidLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

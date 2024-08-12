@@ -45,9 +45,11 @@ namespace WBR
         /// <returns></returns>
         public int Init()
         {
+            var f = HidDevices.Enumerate();
             var devices = HidDevices.Enumerate(Vid, Pid).ToList();
 
             // Initializing
+            
             for (int i = 0; i < devices.Count(); i++)
             {
                 HidDevice device = devices[i];
@@ -57,8 +59,9 @@ namespace WBR
 
                 device.OpenDevice();
                 device.MonitorDeviceEvents = true;
+                //.ReadReport(OnReport);
             }
-
+            
             MediaHandler.VOLUME_CURRENT = (int)VideoPlayerController.AudioManager.GetMasterVolume();
 
             // Creating threads
@@ -66,7 +69,6 @@ namespace WBR
             for (int i = 0; i < devices.Count(); i++)
             {
                 HidDevice device = devices[i];
-
                 threads[i] = new Thread(() =>
                 {
                     while (device != null)
@@ -84,11 +86,47 @@ namespace WBR
         /// it to the bytes messured 
         /// </summary>
         /// <param name="device"></param>
+        /// 
+
+        private void OnReport(HidReport report)
+        {
+            byte[] data = report.Data;
+
+            if (data.Length < 1)
+                return;
+
+            //Console.WriteLine(data);
+            string byteStr = BytesToString(data);
+
+            Console.WriteLine(ByteArrayToString(data));
+
+
+
+            if (ContainsByte(byteStr, Bytes.VOLUME_UP))
+            {
+                MediaHandler.VolumeUp();
+            }
+            else if (ContainsByte(byteStr, Bytes.VOLUME_DOWN))
+            {
+                MediaHandler.VolumeDown();
+            }
+            else if (ContainsByte(byteStr, Bytes.MUTE))
+            {
+                ClickHandler.HandleClick();
+            }
+
+        }
+
         private void ReportHandler(HidDevice device)
         {
             byte[] data = device.ReadReport().Data;
+
+            if (data.Length < 1)
+                return;
+
             string byteStr = BytesToString(data);
 
+            Console.WriteLine(ByteArrayToString(data));
             if (ContainsByte(byteStr, Bytes.VOLUME_UP))
             {
                 MediaHandler.VolumeUp();
@@ -103,6 +141,28 @@ namespace WBR
             }
           
         }
+
+        private string ByteArrayToString(byte[] arr)
+        {
+            string res = "{ ";
+            int size = arr.Count();
+            for (int i = 0; i < size; i++)
+            {
+                res += "[" + (int)arr[i] + "]";
+
+                if (i != size - 1)
+                {
+                    res += ", ";
+                }
+                else
+                {
+                    res += " ";
+                }
+
+            }
+            return res + "}";
+        }
+
 
         /// <summary>
         /// loops through each predefined string to check if a new string matches
