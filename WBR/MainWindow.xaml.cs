@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -23,6 +24,9 @@ namespace WBR
     public partial class MainWindow : Window
     {
         public Main main;
+        private NotifyIcon trayIcon;
+        private WindowState storedWindowState = WindowState.Normal;
+        private bool ShouldHideInTray = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,10 +36,21 @@ namespace WBR
             Start(0x03F0, 0x0696);
             SetStartup();
         }
+        private void TrayIconClick(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = storedWindowState;
+        }
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
             Process.GetCurrentProcess().Kill();
+        }
+        protected override void OnStateChanged(EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized && ShouldHideInTray) this.Hide();
+
+            base.OnStateChanged(e);
         }
         private void SetStartup()
         {
@@ -60,6 +75,15 @@ namespace WBR
         }
         private void Start(int Vid, int Pid)
         {
+            trayIcon = new System.Windows.Forms.NotifyIcon();
+            trayIcon.BalloonTipText = "";
+            trayIcon.BalloonTipTitle = "WBR";
+            trayIcon.Visible = true;
+            trayIcon.Text = "WBR";
+            trayIcon.Icon = new System.Drawing.Icon("icon.ico");
+            trayIcon.Click += new EventHandler(TrayIconClick);
+            storedWindowState = WindowState;
+
             SetConfig(Config.LoadConfig());
             Apply();
 
@@ -122,15 +146,26 @@ namespace WBR
             }
             catch (Exception ex) { }
 
+            try
+            {
+                bool? b = HideTray.IsChecked;
+                if(b != null)
+                {
+                    ShouldHideInTray = (bool)b;
+                }
+            }
+            catch (Exception ex) { }
 
-            Config config = new Config(Vid.Text, Pid.Text, Interval.Text, Keycode1.Text, Keycode2.Text, Keycode3.Text, "Device");
+
+            Config config = new Config(Vid.Text, Pid.Text, Interval.Text, Keycode1.Text, Keycode2.Text, Keycode3.Text, "Device", ShouldHideInTray);
             config.SaveConfig();
 
             Active.Text = main.Started.ToString();
         }
         private void SetConfig(Config config)
         {
-            if(config == null) return;
+
+            if (config == null) return;
 
             if(config.variables[0] != null) Vid.Text = config.variables[0];
             if (config.variables[1] != null) Pid.Text = config.variables[1];
@@ -139,6 +174,9 @@ namespace WBR
             if (config.variables[4] != null) Keycode2.Text = config.variables[4];
             if (config.variables[5] != null) Keycode3.Text = config.variables[5];
             //if (config.variables[6] != null) VolumeStep.Text = config.variables[6];
+
+            // TODO: errorc checking? lets hope this wont throw any errors :)
+            if (config.variables[7] != null) HideTray.IsChecked = ParseStringToBool(config.variables[7]);
         }
         private int ParseStringToInt(string text)
         {
@@ -149,6 +187,10 @@ namespace WBR
         {
             int result = int.Parse(text, System.Globalization.NumberStyles.HexNumber);
             return result;
+        }
+        private bool ParseStringToBool(string text)
+        {
+            return bool.Parse(text);
         }
         private byte ParseHexStringToByte(string text)
         {

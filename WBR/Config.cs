@@ -12,10 +12,12 @@ namespace WBR
     /// </summary>
     public class Config
     {
-        public string[] variables = new string[7];
+        public static string FileName = "config.yml";
+
+        public string[] variables = new string[8];
         public Config() {}
 
-        public Config(string _VendorID, string _ProductID, string _Interval, string _Keycode1, string _Keycode2, string _Keycode3, string _Device)
+        public Config(string _VendorID, string _ProductID, string _Interval, string _Keycode1, string _Keycode2, string _Keycode3, string _Device, bool _ShouldHideInTray)
         {
             variables[0] = _VendorID;             // VendorID 
             variables[1] = _ProductID;            // ProductID
@@ -23,7 +25,8 @@ namespace WBR
             variables[3] = _Keycode1;             // Keycode1 
             variables[4] = _Keycode2;             // Keycode2 
             variables[5] = _Keycode3;             // Keycode3 
-            variables[6] = _Device;           // Keycode3 
+            variables[6] = _Device;           // 
+            variables[7] = _ShouldHideInTray.ToString();           // 
         }
 
         /// <summary>
@@ -31,7 +34,7 @@ namespace WBR
         /// </summary>
         public void SaveConfig()
         {
-            FileHandler.WriteToFile("config.yml", this.ToString());
+            FileHandler.WriteToFile(FileName, this.ToString());
         }
 
         /// <summary>
@@ -40,7 +43,7 @@ namespace WBR
         /// <returns></returns>
         public static Config LoadConfig()
         {
-            var text = FileHandler.ReadLinesFromFile("config.yml");
+            var text = FileHandler.ReadLinesFromFile(FileName);
             if (text == null)
                 return null;
 
@@ -62,7 +65,8 @@ namespace WBR
                 "Keycode1: "    + variables[3] + "\n" +
                 "Keycode2: "    + variables[4] + "\n" +
                 "Keycode3: "    + variables[5] + "\n" +
-                "VolumeStep: "  + variables[6];
+                "Device: "      + variables[6] + "\n" +
+                "InTray: "      + variables[7];
         }
 
 
