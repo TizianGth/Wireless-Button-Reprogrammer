@@ -28,7 +28,9 @@ Sadly it's only one at the moment, but if you want to use this tool and your dev
 ### Download
 You can donload the .exe here on github under "Releases"
 ### How to find you Vendor and Product ID:
-(There will be a way to do this easier soon :])\
+#### The newest and easiest way now is to download `debug.zip` under releases and follow the instructions until *step 3.*
+Alternatively (old way):
+
 To find your 2 IDs you basically have 2 ways of doing so: 1. Trial and error using your device manager (not advised) or 2. using a third party tool like [Busdog](https://github.com/djpnewton/busdog). Here you will only find documentation how to find your IDs via busdog. 
 
 1. Install and open [Busdog](https://github.com/djpnewton/busdog). Here you will have to check "Automaticly trace new Devices" on the bottom left hand corner. \
