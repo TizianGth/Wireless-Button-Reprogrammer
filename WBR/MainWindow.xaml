@@ -67,7 +67,7 @@
                     </StackPanel>
 
                     <StackPanel>
-                        <TextBlock Foreground="#AEAFB5" Background="#313338">Devices</TextBlock>
+                        <TextBlock Foreground="#AEAFB5" Background="#313338">Devices detected</TextBlock>
                         <TextBox IsReadOnly="True" Foreground="#AEAFB5" Background="#313338" Name="DeviceAmount">0</TextBox>
                     </StackPanel>
 
@@ -114,9 +114,13 @@
 
                     </StackPanel>
 
-                    <StackPanel>
-                        <TextBlock Foreground="#AEAFB5" Background="#313338">Volume step</TextBlock>
-                        <TextBox Foreground="#AEAFB5" Background="#313338" Text="5" Name="VolumeStep"/>
+                    <StackPanel Width="128">
+                        <TextBlock Foreground="#AEAFB5" Background="#313338">Device</TextBlock>
+                        <ComboBox SelectionChanged="ComboBox_SelectionChanged">
+                            <ComboBoxItem IsSelected="True">HyperX Cloud II Wireless (DTS)</ComboBoxItem>
+
+                        </ComboBox>
+
 
                     </StackPanel>
 

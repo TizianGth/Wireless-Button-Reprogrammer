@@ -42,9 +42,9 @@ namespace WBR
             RegistryKey rk = Registry.CurrentUser.OpenSubKey
                 ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
-            if (!rk.GetValueNames().Contains("HyperX"))
+            if (!rk.GetValueNames().Contains("WBR"))
             {
-                rk.SetValue("HyperX", Environment.CurrentDirectory + "//HyperXCloud2.exe");
+                rk.SetValue("WBR", Environment.CurrentDirectory + "//WBR.exe");
             }
 
 
@@ -118,12 +118,12 @@ namespace WBR
 
             try
             {
-                MediaHandler.VOLUME_AMOUNT = ParseStringToInt(VolumeStep.Text);
+                //MediaHandler.VOLUME_AMOUNT = ParseStringToInt(VolumeStep.Text);
             }
             catch (Exception ex) { }
 
 
-            Config config = new Config(Vid.Text, Pid.Text, Interval.Text, Keycode1.Text, Keycode2.Text, Keycode3.Text, VolumeStep.Text);
+            Config config = new Config(Vid.Text, Pid.Text, Interval.Text, Keycode1.Text, Keycode2.Text, Keycode3.Text, "Device");
             config.SaveConfig();
 
             Active.Text = main.Started.ToString();
@@ -138,7 +138,7 @@ namespace WBR
             if (config.variables[3] != null) Keycode1.Text = config.variables[3];
             if (config.variables[4] != null) Keycode2.Text = config.variables[4];
             if (config.variables[5] != null) Keycode3.Text = config.variables[5];
-            if (config.variables[6] != null) VolumeStep.Text = config.variables[6];
+            //if (config.variables[6] != null) VolumeStep.Text = config.variables[6];
         }
         private int ParseStringToInt(string text)
         {
@@ -161,5 +161,9 @@ namespace WBR
             return Window.GetWindow(App.Current.MainWindow) as Window;
         }
 
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

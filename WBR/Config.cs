@@ -15,7 +15,7 @@ namespace WBR
         public string[] variables = new string[7];
         public Config() {}
 
-        public Config(string _VendorID, string _ProductID, string _Interval, string _Keycode1, string _Keycode2, string _Keycode3, string _VolumeStep)
+        public Config(string _VendorID, string _ProductID, string _Interval, string _Keycode1, string _Keycode2, string _Keycode3, string _Device)
         {
             variables[0] = _VendorID;             // VendorID 
             variables[1] = _ProductID;            // ProductID
@@ -23,7 +23,7 @@ namespace WBR
             variables[3] = _Keycode1;             // Keycode1 
             variables[4] = _Keycode2;             // Keycode2 
             variables[5] = _Keycode3;             // Keycode3 
-            variables[6] = _VolumeStep;           // Keycode3 
+            variables[6] = _Device;           // Keycode3 
         }
 
         /// <summary>
