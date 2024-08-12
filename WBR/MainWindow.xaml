@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:WBR"
         mc:Ignorable="d"
         Title="WBR" Height="160" Width="410" Background="#2B2D31" ResizeMode="CanMinimize">
+    
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15*"/>
@@ -116,7 +118,7 @@
 
                     <StackPanel Width="128">
                         <TextBlock Foreground="#AEAFB5" Background="#313338">Device</TextBlock>
-                        <ComboBox SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBox SelectionChanged="ComboBox_SelectionChanged" Height="18" FontSize="9">
                             <ComboBoxItem IsSelected="True">HyperX Cloud II Wireless (DTS)</ComboBoxItem>
 
                         </ComboBox>
@@ -147,11 +149,21 @@
                             <TextBlock HorizontalAlignment="Center" Foreground="#AEAFB5" Margin="0,0,0,0">Apply</TextBlock>
                         </Button>
                     </Grid>
-                    <Grid Background="#313338" Width="70" Height="23" HorizontalAlignment="Right">
+
+                    <Grid Background="#313338" Width="70" Height="23" HorizontalAlignment="Right" Margin="5,0,0,0">
                         <Button Background="#313338" Click="Stop">
                             <TextBlock HorizontalAlignment="Center" Foreground="#AEAFB5" Margin="0,0,0,0">Stop</TextBlock>
                         </Button>
                     </Grid>
+                    <Border BorderBrush="#707070" BorderThickness="1" Background="#313338" Width="145" Height="23" HorizontalAlignment="Left" Margin="5,0,0,0">
+                        <Grid Background="#313338" Width="145" Height="23" HorizontalAlignment="Left" Margin="5,0,0,0">
+                            <TextBlock HorizontalAlignment="Center" Foreground="#AEAFB5" Margin="0,2,0,0">Hide in system tray</TextBlock>
+                            <CheckBox Margin="2,3,0,0" Name="HideTray">
+
+                            </CheckBox>
+
+                        </Grid>
+                    </Border>
                 </DockPanel>
             </ListBoxItem>
         </ListBox>

@@ -127,15 +127,17 @@ namespace WBR
             string byteStr = BytesToString(data);
 
             Console.WriteLine(ByteArrayToString(data));
+            /*
             if (ContainsByte(byteStr, Bytes.VOLUME_UP))
             {
                 MediaHandler.VolumeUp();
             }
+
             else if (ContainsByte(byteStr, Bytes.VOLUME_DOWN))
             {
                 MediaHandler.VolumeDown();
-            }
-            else if (ContainsByte(byteStr, Bytes.MUTE))
+            }*/
+            if (ContainsByte(byteStr, Bytes.MUTE))
             {
                 ClickHandler.HandleClick();
             }
