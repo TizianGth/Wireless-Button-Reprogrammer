@@ -10,10 +10,10 @@ using System.Windows;
 [assembly: AssemblyTitle("WBR")]
 [assembly: AssemblyDescription("Allows you to repgrogramm your headset's buttons")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Tizian  ©")]
+[assembly: AssemblyCompany("Tizian©")]
 [assembly: AssemblyProduct("WBR")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
-[assembly: AssemblyTrademark("Tizian  ©")]
+[assembly: AssemblyTrademark("Tizian©")]
 [assembly: AssemblyCulture("")]
 
 // Durch Festlegen von ComVisible auf FALSE werden die Typen in dieser Assembly
