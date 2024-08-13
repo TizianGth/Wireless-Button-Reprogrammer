@@ -1,3 +1,4 @@
+## Important: In need of an app icon. If anybody wants to design one, hmu!
 ## Table of contents
 * [General info](#general-info)
 * [Warning](#warning)
