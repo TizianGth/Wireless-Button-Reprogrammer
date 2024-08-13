@@ -54,12 +54,30 @@ namespace WBR
         }
         private void SetStartup()
         {
+
+
             RegistryKey rk = Registry.CurrentUser.OpenSubKey
                 ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
-            if (!rk.GetValueNames().Contains("WBR"))
+           // if (!rk.GetValueNames().Contains("WBR"))
             {
-                rk.SetValue("WBR", Environment.CurrentDirectory + "//WBR.exe");
+                rk.SetValue("WBR", Environment.CurrentDirectory + "\\WBR.exe");
+            }
+
+            rk = Registry.LocalMachine.OpenSubKey
+            ("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            // if (!rk.GetValueNames().Contains("WBR"))
+            {
+                rk.SetValue("WBR", Environment.CurrentDirectory + "\\WBR.exe");
+            }
+
+            rk = Registry.LocalMachine.OpenSubKey
+            ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\run", true);
+
+            // if (!rk.GetValueNames().Contains("WBR"))
+            {
+                rk.SetValue("WBR", Environment.CurrentDirectory + "\\WBR.exe");
             }
 
 
