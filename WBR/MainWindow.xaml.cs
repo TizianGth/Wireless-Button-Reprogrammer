@@ -23,6 +23,7 @@ namespace WBR
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public Main main;
         private NotifyIcon trayIcon;
         private WindowState storedWindowState = WindowState.Normal;
@@ -32,7 +33,6 @@ namespace WBR
             InitializeComponent();
 
             main = new Main();
-
             Start(0x03F0, 0x0696);
             SetStartup();
         }
@@ -93,14 +93,7 @@ namespace WBR
         }
         private void Start(int Vid, int Pid)
         {
-            trayIcon = new System.Windows.Forms.NotifyIcon();
-            trayIcon.BalloonTipText = "";
-            trayIcon.BalloonTipTitle = "WBR";
-            trayIcon.Visible = true;
-            trayIcon.Text = "WBR";
-            trayIcon.Icon = new System.Drawing.Icon("icon.ico");
-            trayIcon.Click += new EventHandler(TrayIconClick);
-            storedWindowState = WindowState;
+            SetupTray();
 
             SetConfig(Config.LoadConfig());
             Apply();
@@ -108,6 +101,20 @@ namespace WBR
             main.Start(Vid, Pid);
 
             Active.Text = main.Started.ToString();
+        }
+
+        private void SetupTray()
+        {
+            trayIcon = new System.Windows.Forms.NotifyIcon();
+
+            trayIcon.BalloonTipText = "";
+            trayIcon.BalloonTipTitle = "WBR";
+            trayIcon.Visible = true;
+            trayIcon.Text = "WBR";
+            trayIcon.Icon = new System.Drawing.Icon(FileHandler.EnvironmentPath + "icon.ico");
+
+            trayIcon.Click += new EventHandler(TrayIconClick);
+            storedWindowState = WindowState;
         }
         private void Stop(object sender, RoutedEventArgs e)
         {

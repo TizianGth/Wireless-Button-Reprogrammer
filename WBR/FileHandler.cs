@@ -13,15 +13,16 @@ namespace WBR
     /// </summary>
     internal class FileHandler
     {
+        public static string EnvironmentPath = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "//";
         public static void WriteToFile(string path, string text)
         {
-            File.WriteAllText(Environment.CurrentDirectory + "//" + path, text);
+            File.WriteAllText(EnvironmentPath + path, text);
         }
         public static string[] ReadLinesFromFile(string path)
         {
-            if (!File.Exists(Environment.CurrentDirectory + "//" + path)) return null;
+            if (!File.Exists(EnvironmentPath + path)) return null;
 
-            return File.ReadLines(Environment.CurrentDirectory + "//" + path).ToArray();
+            return File.ReadLines(EnvironmentPath + path).ToArray();
         }
     }
 }
