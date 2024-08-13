@@ -21,7 +21,7 @@ Because of that I would advise you to only use this tool if you can live without
 Sadly it's only one at the moment, but if you want to use this tool and your device is not supported, feel free to contact me because I have to adjust the application to each device individually (you could e.g open an issue here on github).
 
 ## How to get your device to be supported
-* Execute WBR-Tester.exe ([Releases](https://github.com/TizianGuth/Wireless-Button-Reprogrammer/releases)) and follow the instruction.
+* Execute Debug.exe ([Releases](https://github.com/TizianGuth/Wireless-Button-Reprogrammer/releases)) and follow the instruction.
 * Contact me as told in the instructions.
 
 ## Setup
