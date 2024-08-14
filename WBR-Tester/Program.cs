@@ -22,6 +22,7 @@ namespace testusb
 
             public USB(HidDevice device)
             {
+                Console.WriteLine("Path: " + device.DevicePath);
                 string _v = device.DevicePath.Split("vid_")[1];
                 string _p = _v.Split("pid_")[1];
                 string v = _v.Substring(0, 4);
@@ -97,7 +98,7 @@ namespace testusb
                 result += ((int)b) + " ";
             }
             //if(!UselessBytes.Contains(bytes))
-                Console.WriteLine("Bytes: " + result);
+            Console.WriteLine("Bytes: " + result);
         }
 
         static void GatherUselessBytes(HidReport report)
@@ -115,20 +116,24 @@ namespace testusb
             MessageWait("2. Please remove the usb reviever and ensure that no other usb devices are disconnecting randomly");
             var devicesAfter = HidDevices.Enumerate().ToList();
             var devicesAfterHash = new Dictionary<USB, HidDevice>();
+            Console.WriteLine("Adding devices to dict..");
             foreach (var d in devicesAfter)
             {
                 var key = new USB(d);
                 if (!devicesAfterHash.ContainsKey(key))
                 {
-                    devicesAfterHash[key] = d;
+                    Console.WriteLine(key);
+                    devicesAfterHash.Add(key, d);
                 }
             }
             bool found = false;
             Dictionary<USB, HidDevice> uniqueDevices = new Dictionary<USB, HidDevice>();
 
+            Console.WriteLine("Getting the unique devices..");
             foreach (HidDevice device in devicesBefore)
             {
                 var usb = new USB(device);
+                Console.WriteLine("Checking: " + usb);
                 if (!devicesAfterHash.ContainsKey(usb))
                 {
                     if(!uniqueDevices.ContainsKey(usb))

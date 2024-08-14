@@ -111,7 +111,7 @@ namespace WBR
             trayIcon.BalloonTipTitle = "WBR";
             trayIcon.Visible = true;
             trayIcon.Text = "WBR";
-            trayIcon.Icon = new System.Drawing.Icon(FileHandler.EnvironmentPath + "icon.ico");
+            trayIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon("icon.ico");
 
             trayIcon.Click += new EventHandler(TrayIconClick);
             storedWindowState = WindowState;
