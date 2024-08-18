@@ -6,11 +6,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace testusb
+namespace Debug
 {
+    //
+    // Don't look here bad debug code!!
+    //
     internal class Program
     {
-        static HashSet<List<Byte>> UselessBytes = new HashSet<List<byte>>();
+        static HashSet<List<byte>> UselessBytes = new HashSet<List<byte>>();
         public class USB
         {
             public USB(int vid, int pid, int id)

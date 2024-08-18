@@ -15,14 +15,16 @@ namespace WBR
     /// </summary>
     public class Device
     {
-        public Device(int vid, int pid)
+        public Device(string device, int vid, int pid)
         {
             Vid = vid;
             Pid = pid;
+            DeviceName = device;
         }
 
-        public int Vid; // Vendor ID
-        public int Pid; // Product ID
+        private int Vid; // Vendor ID
+        private int Pid; // Product ID
+        private string DeviceName;
         List<Thread> threads;
 
         /// <summary>
@@ -59,7 +61,6 @@ namespace WBR
 
                 device.OpenDevice();
                 device.MonitorDeviceEvents = true;
-                //.ReadReport(OnReport);
             }
             
             MediaHandler.VOLUME_CURRENT = (int)VideoPlayerController.AudioManager.GetMasterVolume();
@@ -78,79 +79,32 @@ namespace WBR
                 });
                 threads[i].Start();
             }
-            return devices.Count; // TODO: don't return device count from Init function
-        }
-
-        /// <summary>
-        /// Reads data from device, converts it to string and then compares
-        /// it to the bytes messured 
-        /// </summary>
-        /// <param name="device"></param>
-        /// 
-
-        private void OnReport(HidReport report)
-        {
-            byte[] data = report.Data;
-
-            if (data.Length < 1)
-                return;
-
-            //Console.WriteLine(data);
-            string byteStr = BytesToString(data);
-
-            Console.WriteLine(ByteArrayToString(data));
-
-
-
-            if (ContainsByte(byteStr, Bytes.VOLUME_UP))
-            {
-                MediaHandler.VolumeUp();
-            }
-            else if (ContainsByte(byteStr, Bytes.VOLUME_DOWN))
-            {
-                MediaHandler.VolumeDown();
-            }
-            else if (ContainsByte(byteStr, Bytes.MUTE))
-            {
-                ClickHandler.HandleClick();
-            }
-
+            return devices.Count;
         }
 
         private void ReportHandler(HidDevice device)
         {
-            byte[] data = device.ReadReport().Data;
+            List<byte> data = device.ReadReport().Data.ToList();
 
-            if (data.Length < 1)
+            if (data.Count < 1)
                 return;
 
-            string byteStr = BytesToString(data);
+            Console.WriteLine(BytesToString(data));
 
-            Console.WriteLine(ByteArrayToString(data));
-            /*
-            if (ContainsByte(byteStr, Bytes.VOLUME_UP))
-            {
-                MediaHandler.VolumeUp();
-            }
-
-            else if (ContainsByte(byteStr, Bytes.VOLUME_DOWN))
-            {
-                MediaHandler.VolumeDown();
-            }*/
-            if (ContainsByte(byteStr, Bytes.MUTE))
+            if (DevicePresets.Contains("HyperX Cloud II Wireless (DTS)", data))
             {
                 ClickHandler.HandleClick();
             }
-          
+
         }
 
-        private string ByteArrayToString(byte[] arr)
+        private string BytesToString(List<byte> bytes)
         {
             string res = "{ ";
-            int size = arr.Count();
+            int size = bytes.Count;
             for (int i = 0; i < size; i++)
             {
-                res += "[" + (int)arr[i] + "]";
+                res += "[" + (int)bytes[i] + "]";
 
                 if (i != size - 1)
                 {
@@ -163,40 +117,6 @@ namespace WBR
 
             }
             return res + "}";
-        }
-
-
-        /// <summary>
-        /// loops through each predefined string to check if a new string matches
-        /// </summary>
-        /// <param name="bytes"></param>
-        /// <param name="bytesWanted"></param>
-        /// <returns></returns>
-        private bool ContainsByte(string bytes, string[] bytesWanted)
-        {
-            for (int i = 0; i < bytesWanted.Length; i++)
-            {
-                if (bytes == bytesWanted[i])
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Converts byte array to string
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        private string BytesToString(byte[] data)
-        {
-            string result = "";
-            for (int i = 0; i < data.Length; i++)
-            {
-                result += data[i];
-            }
-            return result;
         }
 
     }

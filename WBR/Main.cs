@@ -17,11 +17,11 @@ namespace WBR
 
         public Main(){}
 
-        public int Start(int Vid, int Pid)
+        public int Start(string deviceName, int vid, int pid)
         {
             if (Started) return devices;
 
-            device = new Device(Vid, Pid);
+            device = new Device(deviceName, vid, pid);
             devices = device.Init();
 
             Started = true;
@@ -37,5 +37,6 @@ namespace WBR
 
             Started = false;
         }
+
     }
 }

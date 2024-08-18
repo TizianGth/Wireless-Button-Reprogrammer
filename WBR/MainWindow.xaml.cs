@@ -33,13 +33,14 @@ namespace WBR
             InitializeComponent();
 
             main = new Main();
-            Start(0x03F0, 0x0696);
+            Start();
             SetStartup();
         }
         private void TrayIconClick(object sender, EventArgs e)
         {
             Show();
             WindowState = storedWindowState;
+            Activate();
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -50,7 +51,7 @@ namespace WBR
         {
             if (WindowState == WindowState.Minimized && ShouldHideInTray) this.Hide();
 
-            base.OnStateChanged(e);
+            //base.OnStateChanged(e);
         }
         private void SetStartup()
         {
@@ -82,23 +83,17 @@ namespace WBR
 
 
         }
-
+        
         private void Start(object sender, RoutedEventArgs e)
         {
-            int devices = main.Start(ParseHexStringToInt(Vid.Text), ParseHexStringToInt(Pid.Text));
-
-            DeviceAmount.Text = devices.ToString();
-
-            Active.Text = main.Started.ToString();
+            Start();
         }
-        private void Start(int Vid, int Pid)
+        private void Start()
         {
             SetupTray();
 
             SetConfig(Config.LoadConfig());
             Apply();
-
-            main.Start(Vid, Pid);
 
             Active.Text = main.Started.ToString();
         }
@@ -134,19 +129,17 @@ namespace WBR
         {
 
             main.Stop();
-            try
-            {
-                int devices =  main.Start(ParseHexStringToInt(Vid.Text), ParseHexStringToInt(Pid.Text));
-
-                DeviceAmount.Text = devices.ToString();
-            }
-            catch (Exception ex) {
-
-            }
             if (!main.Started)
             {
                 main.Stop();
             }
+            try
+            {
+                int devices =  main.Start(GetDeviceName(), ParseHexStringToInt(Vid.Text), ParseHexStringToInt(Pid.Text));
+
+                DeviceAmount.Text = devices.ToString();
+            }
+            catch (Exception ex) {}
             try
             {
                 MediaHandler.PLAY_PAUSE = ParseHexStringToByte(Keycode1.Text);
@@ -200,7 +193,7 @@ namespace WBR
             if (config.variables[5] != null) Keycode3.Text = config.variables[5];
             //if (config.variables[6] != null) VolumeStep.Text = config.variables[6];
 
-            // TODO: errorc checking? lets hope this wont throw any errors :)
+            // TODO: error checking? lets hope this wont throw any errors :)
             if (config.variables[7] != null) HideTray.IsChecked = ParseStringToBool(config.variables[7]);
         }
         private int ParseStringToInt(string text)
@@ -231,6 +224,12 @@ namespace WBR
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private string GetDeviceName()
+        {
+            Console.WriteLine(DeviceName.SelectedItem.ToString());
+            return DeviceName.SelectedItem.ToString();
         }
     }
 }

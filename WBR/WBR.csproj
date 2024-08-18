@@ -100,10 +100,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AudioManager.cs" />
-    <Compile Include="Bytes.cs" />
     <Compile Include="ClickHandler.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Device.cs" />
+    <Compile Include="DevicePresets.cs" />
     <Compile Include="FileHandler.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MediaHandler.cs" />
