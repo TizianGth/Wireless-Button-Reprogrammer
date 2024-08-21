@@ -106,7 +106,7 @@ namespace WBR
             trayIcon.BalloonTipTitle = "WBR";
             trayIcon.Visible = true;
             trayIcon.Text = "WBR";
-            trayIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon("icon.ico");
+            trayIcon.Icon = new System.Drawing.Icon(FileHandler.EnvironmentPath + "icon.ico");
 
             trayIcon.Click += new EventHandler(TrayIconClick);
             storedWindowState = WindowState;
@@ -228,8 +228,8 @@ namespace WBR
 
         private string GetDeviceName()
         {
-            Console.WriteLine(DeviceName.SelectedItem.ToString());
-            return DeviceName.SelectedItem.ToString();
+            Console.WriteLine(DeviceName.SelectedValue.ToString());
+            return DeviceName.SelectedValue.ToString();
         }
     }
 }

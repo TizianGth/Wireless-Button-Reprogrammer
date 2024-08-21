@@ -17,7 +17,15 @@ namespace WBR
                     new List<byte>() { 255, 187, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 0, 0 }, 
                 })
             },
-
+            //1 1 142 0 0 0 0 0 197 107 181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+            { "Corsair Virtuoso XT",
+                new DevicePresets(new List<List<byte>>() {
+                    new List<byte>() { 1, 1, 142, 0, 0, 0, 0, 0, 197, 107, 181,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+                    new List<byte>() { 1, 1, 142, 0, 1, 0, 0, 0, 197, 107, 181,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+                })
+            },
             /* adding a new device
             { "PLACEHOLDER",
                 new DevicePresets(new List<List<byte>>() {
@@ -34,6 +42,7 @@ namespace WBR
 
         public static bool Contains(string device, List<byte> bytes) 
         {
+            Console.WriteLine(device);
             if(presets.ContainsKey(device))
             {
                 foreach(var byteList in presets[device].mute)

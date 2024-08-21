@@ -91,7 +91,7 @@ namespace WBR
 
             Console.WriteLine(BytesToString(data));
 
-            if (DevicePresets.Contains("HyperX Cloud II Wireless (DTS)", data))
+            if (DevicePresets.Contains(DeviceName, data))
             {
                 ClickHandler.HandleClick();
             }
