@@ -26,17 +26,18 @@ namespace WBR
         private int Pid; // Product ID
         private string DeviceName;
         List<Thread> threads;
-
+        private bool abort = false;
         /// <summary>
         /// Goes through every single thread created previously and aborts them
         /// </summary>
         public void Stop()
         {
+            abort = true;
             if (threads == null) return;
 
             for(int i = 0; i < threads.Count; i++)
             {
-                if (threads[i] != null) threads[i].Abort();
+                if (threads[i] != null) threads[i].Interrupt();
                 threads.RemoveAt(i);
             }
         }
@@ -47,6 +48,7 @@ namespace WBR
         /// <returns></returns>
         public int Init()
         {
+            abort = false;
             var f = HidDevices.Enumerate();
             var devices = HidDevices.Enumerate(Vid, Pid).ToList();
 
@@ -60,7 +62,7 @@ namespace WBR
                     break;
 
                 device.OpenDevice();
-                device.MonitorDeviceEvents = true;
+                //device.MonitorDeviceEvents = true;
             }
             
             MediaHandler.VOLUME_CURRENT = (int)VideoPlayerController.AudioManager.GetMasterVolume();
@@ -72,7 +74,7 @@ namespace WBR
                 HidDevice device = devices[i];
                 threads[i] = new Thread(() =>
                 {
-                    while (device != null)
+                    while (device != null && !abort)
                     {
                         ReportHandler(device);
                     }

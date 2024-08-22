@@ -1,9 +1,8 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WBR", "WBR\WBR.csproj", "{ED0DE598-7F12-4017-AE36-9BFE1ACC5970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WBR", "WBR\WBR.csproj", "{ED0DE598-7F12-4017-AE36-9BFE1ACC5970}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WBR-Debug", "WBR-Tester\WBR-Debug.csproj", "{EFA29C45-E9DC-487B-99FD-A8DFFAE39321}"
 	ProjectSection(ProjectDependencies) = postProject

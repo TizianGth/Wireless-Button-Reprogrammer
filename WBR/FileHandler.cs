@@ -18,6 +18,16 @@ namespace WBR
         {
             File.WriteAllText(EnvironmentPath + path, text);
         }
+        public static void WriteToAppData(string path, string text)
+        {
+            File.WriteAllText(EnvironmentPath + path, text);
+        }
+        public static string ReadFromAppData(string path)
+        {
+            if (!File.Exists(EnvironmentPath + path)) return null;
+
+            return File.ReadAllText(EnvironmentPath + path);
+        }
         public static string[] ReadLinesFromFile(string path)
         {
             if (!File.Exists(EnvironmentPath + path)) return null;

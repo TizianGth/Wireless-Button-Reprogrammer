@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,7 +28,7 @@ namespace WBR
         public Main main;
         private NotifyIcon trayIcon;
         private WindowState storedWindowState = WindowState.Normal;
-        private bool ShouldHideInTray = false;
+        public static Config config = new Config();
         public MainWindow()
         {
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace WBR
         }
         protected override void OnStateChanged(EventArgs e)
         {
-            if (WindowState == WindowState.Minimized && ShouldHideInTray) this.Hide();
+            if (WindowState == WindowState.Minimized && config.ShouldHideInTray) this.Hide();
 
             //base.OnStateChanged(e);
         }
@@ -92,7 +93,8 @@ namespace WBR
         {
             SetupTray();
 
-            SetConfig(Config.LoadConfig());
+            config.LoadConfig();
+            ApplyConfig();
             Apply();
 
             Active.Text = main.Started.ToString();
@@ -125,6 +127,30 @@ namespace WBR
         {
             Apply();
         }
+
+        private void ApplyConfig()
+        {
+
+
+            Vid.Text = config.VendorID.ToString("X");
+            Pid.Text = config.ProductID.ToString("X");
+            Interval.Text = config.Interval.ToString();
+            Keycode1.Text = config.Keycode1.ToString("X");
+            Keycode2.Text = config.Keycode2.ToString("X");
+            Keycode3.Text = config.Keycode3.ToString("X");
+            var items = DeviceName.Items;
+            int i;
+            for(i = 0; i < items.Count; i++)
+            {
+                DeviceName.SelectedIndex = i;
+                if(GetDeviceName() == config.Device)
+                    break;
+            }
+            DeviceName.SelectedIndex = i;
+            HideTray.IsChecked = config.ShouldHideInTray;
+            Active.Text = main.Started.ToString();
+        }
+
         private void Apply()
         {
 
@@ -133,9 +159,15 @@ namespace WBR
             {
                 main.Stop();
             }
+            
+
             try
             {
-                int devices =  main.Start(GetDeviceName(), ParseHexStringToInt(Vid.Text), ParseHexStringToInt(Pid.Text));
+                int vid = ParseHexStringToInt(Vid.Text);
+                int pid = ParseHexStringToInt(Pid.Text);
+                int devices =  main.Start(GetDeviceName(), vid, pid);
+                config.VendorID = vid;
+                config.ProductID = pid;
 
                 DeviceAmount.Text = devices.ToString();
             }
@@ -143,20 +175,27 @@ namespace WBR
             try
             {
                 MediaHandler.PLAY_PAUSE = ParseHexStringToByte(Keycode1.Text);
-            }catch (Exception ex) { }
+                config.Keycode1 = MediaHandler.PLAY_PAUSE;
+            }
+            catch (Exception ex) { }
             try
             {
                 MediaHandler.NEXT = ParseHexStringToByte(Keycode2.Text);
-            }catch (Exception ex) { }
+                config.Keycode2 = MediaHandler.NEXT;
+            }
+            catch (Exception ex) { }
             try
             {
                 MediaHandler.PREV = ParseHexStringToByte(Keycode3.Text);
+                config.Keycode3 = MediaHandler.PREV;
             } catch (Exception ex) { }
 
             try
             {
                 ClickHandler.ClickInterval = ParseStringToInt(Interval.Text);
-            }catch (Exception ex) { }
+                config.Interval = ClickHandler.ClickInterval;
+            }
+            catch (Exception ex) { }
 
             try
             {
@@ -169,32 +208,31 @@ namespace WBR
                 bool? b = HideTray.IsChecked;
                 if(b != null)
                 {
-                    ShouldHideInTray = (bool)b;
+                    config.ShouldHideInTray = (bool)b;
                 }
             }
             catch (Exception ex) { }
 
-
-            Config config = new Config(Vid.Text, Pid.Text, Interval.Text, Keycode1.Text, Keycode2.Text, Keycode3.Text, "Device", ShouldHideInTray);
+            config.VendorID = int.Parse(Vid.Text, System.Globalization.NumberStyles.HexNumber);
+            config.ProductID = int.Parse(Pid.Text, System.Globalization.NumberStyles.HexNumber);
+            config.Device = GetDeviceName();
             config.SaveConfig();
+            
+
+            /*
+
+            Vid.Text = config.VendorID.ToString("X");
+            Pid.Text = config.ProductID.ToString("X");
+            Interval.Text = config.Interval.ToString();
+            Keycode1.Text = config.Keycode1.ToString("X");
+            Keycode2.Text = config.Keycode2.ToString("X");
+            Keycode3.Text = config.Keycode3.ToString("X");
+            DeviceName.SelectedIndex = DeviceName.Items.IndexOf(config.Device);
+            HideTray.IsChecked = config.ShouldHideInTray;
+
+            */
 
             Active.Text = main.Started.ToString();
-        }
-        private void SetConfig(Config config)
-        {
-
-            if (config == null) return;
-
-            if(config.variables[0] != null) Vid.Text = config.variables[0];
-            if (config.variables[1] != null) Pid.Text = config.variables[1];
-            if (config.variables[2] != null) Interval.Text = config.variables[2];
-            if (config.variables[3] != null) Keycode1.Text = config.variables[3];
-            if (config.variables[4] != null) Keycode2.Text = config.variables[4];
-            if (config.variables[5] != null) Keycode3.Text = config.variables[5];
-            //if (config.variables[6] != null) VolumeStep.Text = config.variables[6];
-
-            // TODO: error checking? lets hope this wont throw any errors :)
-            if (config.variables[7] != null) HideTray.IsChecked = ParseStringToBool(config.variables[7]);
         }
         private int ParseStringToInt(string text)
         {
@@ -228,7 +266,6 @@ namespace WBR
 
         private string GetDeviceName()
         {
-            Console.WriteLine(DeviceName.SelectedValue.ToString());
             return DeviceName.SelectedValue.ToString();
         }
     }
