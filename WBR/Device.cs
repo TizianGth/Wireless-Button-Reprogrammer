@@ -25,7 +25,7 @@ namespace WBR
         private int Vid; // Vendor ID
         private int Pid; // Product ID
         private string DeviceName;
-        List<Thread> threads;
+        private List<Thread> threads;
         private bool abort = false;
         /// <summary>
         /// Goes through every single thread created previously and aborts them
@@ -93,7 +93,7 @@ namespace WBR
 
             Console.WriteLine(BytesToString(data));
 
-            if (DevicePresets.Contains(DeviceName, data))
+            if (DevicePresets.Contains(DeviceName, data) && !abort)
             {
                 ClickHandler.HandleClick();
             }

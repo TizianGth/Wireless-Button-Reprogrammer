@@ -128,10 +128,8 @@ namespace WBR
             Apply();
         }
 
-        private void ApplyConfig()
-        {
-
-
+        private void ApplyConfig() 
+        { 
             Vid.Text = config.VendorID.ToString("X");
             Pid.Text = config.ProductID.ToString("X");
             Interval.Text = config.Interval.ToString();

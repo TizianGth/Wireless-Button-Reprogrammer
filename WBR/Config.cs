@@ -29,6 +29,8 @@ namespace WBR
         /// </summary>
         public void SaveConfig()
         {
+            SetConfigDefaults();
+
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(this, options);
 
@@ -39,6 +41,19 @@ namespace WBR
         /// Reads text from config.yml File and imports it as variables to the config class
         /// </summary>
         /// <returns></returns>
+        /// 
+
+        private void SetConfigDefaults()
+        {
+            // Config defualts
+            Device = "HyperX Cloud II Wireless (DTS)";
+            Keycode1 = 179;
+            Keycode2 = 176;
+            Keycode3 = 177;
+            ShouldHideInTray = false;
+            Interval = 500;
+        }
+
         public void LoadConfig()
         {
             try
