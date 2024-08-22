@@ -29,8 +29,6 @@ namespace WBR
         /// </summary>
         public void SaveConfig()
         {
-            SetConfigDefaults();
-
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(this, options);
 
@@ -66,6 +64,7 @@ namespace WBR
             catch(Exception e)
             {
                 Console.WriteLine(e);
+                SetConfigDefaults();
                 SaveConfig();
             }
 

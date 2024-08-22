@@ -13,7 +13,7 @@
             <ColumnDefinition Width="15*"/>
             <ColumnDefinition Width="67*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Name="controllerList" Background="#2B2D31" HorizontalAlignment="Left" Width="390" Grid.ColumnSpan="2" Margin="10,0,0,0">
+        <ListBox Name="controllerList" BorderThickness="0" Background="#2B2D31" HorizontalAlignment="Left" Width="390" Grid.ColumnSpan="2" Margin="10,0,0,0">
 
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
@@ -29,7 +29,7 @@
                 </Style>
             </ListBox.ItemContainerStyle>
 
-            <ListBoxItem IsTabStop="False" Focusable="False">
+            <ListBoxItem IsTabStop="False" Focusable="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListBox Background="#313338" Width="370" IsTabStop="False" Focusable="False">
                     <ListBox.ItemsPanel >
                         <ItemsPanelTemplate>
@@ -107,7 +107,7 @@
 
                     <StackPanel>
                         <TextBlock Foreground="#AEAFB5" Background="#313338">Keycode 2</TextBlock>
-                        <TextBox Foreground="#AEAFB5" Background="#313338" Text="0xB0" Name="Keycode2"/>
+                        <TextBox Foreground="#AEAFB5" Background="#313338" Text="0xmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmB0" Name="Keycode2"/>
                     </StackPanel>
 
                     <StackPanel>
