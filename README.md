@@ -47,7 +47,7 @@ keycodes, then enter them in the program, click "Apply" and "Start".
 
 ## Technologies
 * Visual Studio's WPF
-* .NET 4.7.2
+* .NET 8.0
 * [AudioManager](https://gist.github.com/sverrirs/d099b34b7f72bb4fb386)
 * [HIDLibrary](https://github.com/mikeobrien/HidLibrary)
 	
