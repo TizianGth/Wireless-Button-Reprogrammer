@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WBR"
         mc:Ignorable="d"
-        Title="WBR" Width="420" Background="#2B2D31" ResizeMode="CanMinimize" Height="173">
+        Title="WBR" Width="425" Background="#2B2D31" ResizeMode="CanMinimize" Height="173"
+        FontFamily="Segoe UI" FontSize="12"
+        UseLayoutRounding="True" SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType">
 
 
-    <ListBox Name="controllerList" BorderBrush="#707070" BorderThickness="1" Background="#2B2D31"
-             HorizontalAlignment="Stretch" Margin="3,3,3,3" >
+    <ListBox Name="controllerList" BorderBrush="#707070" BorderThickness="1" Background="#2B2D31" Margin="3,3,3,7"
+             ScrollViewer.VerticalScrollBarVisibility="Disabled"
+             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
         <ListBox.ItemContainerStyle>
             <Style TargetType="ListBoxItem">
@@ -69,7 +73,7 @@
 
                 <StackPanel>
                     <TextBlock Foreground="#AEAFB5" Background="#313338">Interval (milliseconds)</TextBlock>
-                    <TextBox Foreground="#AEAFB5" Background="#313338" Text="500" Name="Interval" HorizontalAlignment="Stretch"/>
+                    <TextBox Foreground="#AEAFB5" Background="#313338" Text="500" Name="Interval" HorizontalAlignment="Stretch" Width="115.6"/>
                 </StackPanel>
 
                 <StackPanel>
@@ -108,17 +112,17 @@
 
                 <StackPanel >
                     <TextBlock Foreground="#AEAFB5" Background="#313338">Keycode 1</TextBlock>
-                    <TextBox Foreground="#AEAFB5" Background="#313338" Text="0xB3" Name="Keycode1"/>
+                    <TextBox Foreground="#AEAFB5" Background="#313338" Text="0xB3" Name="Keycode1" Width="56"/>
                 </StackPanel>
 
                 <StackPanel>
                     <TextBlock Foreground="#AEAFB5" Background="#313338">Keycode 2</TextBlock>
-                    <TextBox Foreground="#AEAFB5" Background="#313338" Text="0xB0" Name="Keycode2"/>
+                    <TextBox Foreground="#AEAFB5" Background="#313338" Text="0xB0" Name="Keycode2" Width="56"/>
                 </StackPanel>
 
                 <StackPanel>
                     <TextBlock Foreground="#AEAFB5" Background="#313338">Keycode 3</TextBlock>
-                    <TextBox Foreground="#AEAFB5" Background="#313338" Text="0xB1" Name="Keycode3"/>
+                    <TextBox Foreground="#AEAFB5" Background="#313338" Text="0xB1" Name="Keycode3" Width="56"/>
 
                 </StackPanel>
 
@@ -159,28 +163,28 @@
 
                 <StackPanel >
                     <Button Background="#313338" Click="Start" HorizontalAlignment="Stretch"
-                            BorderBrush="#AEAFB5">
+                            BorderBrush="#AEAFB5" Width="59">
                         <TextBlock Foreground="#AEAFB5" Margin="15,0,15,0">Start</TextBlock>
                     </Button>
                 </StackPanel>
 
                 <StackPanel>
                     <Button Background="#313338" Click="Apply"
-                            BorderBrush="#AEAFB5">
+                            BorderBrush="#AEAFB5" Width="66">
                         <TextBlock HorizontalAlignment="Center" Foreground="#AEAFB5" Margin="15,0,15,0">Apply</TextBlock>
                     </Button>
                 </StackPanel>
 
                 <StackPanel>
                     <Button Background="#313338" Click="Stop"
-                            BorderBrush="#AEAFB5">
+                            BorderBrush="#AEAFB5" Width="59">
                         <TextBlock HorizontalAlignment="Center" Foreground="#AEAFB5" Margin="15,0,15,0">Stop</TextBlock>
                     </Button>
 
                 </StackPanel>
                 <StackPanel>
                     <Button Background="#313338" Click="Settings"
-                            BorderBrush="#AEAFB5">
+                            BorderBrush="#AEAFB5" Width="72">
                         <TextBlock HorizontalAlignment="Center" Foreground="#AEAFB5" Margin="15,0,15,0">Debug</TextBlock>
                     </Button>
 
