@@ -1,23 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Window = System.Windows.Window;
 
 
@@ -65,10 +52,10 @@ namespace WBR
         {
             DeviceName.Items.Clear();
             bool first = true;
-            foreach(var pair in DevicePresets.Presets)
+            foreach (var pair in DevicePresets.Presets)
             {
                 DeviceName.Items.Add(new ComboBoxItem { Content = pair.Key, IsSelected = first });
-                if(first) first = false;
+                if (first) first = false;
             }
 
         }
@@ -93,7 +80,7 @@ namespace WBR
             MediaHandler.PLAY_PAUSE = ErrorHandler.Try(ParseHexStringToByte, Keycode1.Text);
             MediaHandler.NEXT = ErrorHandler.Try(ParseHexStringToByte, Keycode2.Text);
             MediaHandler.PREV = ErrorHandler.Try(ParseHexStringToByte, Keycode3.Text);
-            ClickHandler.ClickInterval = ErrorHandler.Try(ParseStringToInt, Interval.Text); 
+            ClickHandler.ClickInterval = ErrorHandler.Try(ParseStringToInt, Interval.Text);
 
             Config.Keycode1 = MediaHandler.PLAY_PAUSE;
             Config.Keycode2 = MediaHandler.NEXT;
@@ -162,36 +149,35 @@ namespace WBR
         }
         private void SetStartup()
         {
+            const string appName = "WBR";
 
+            using var key = Registry.CurrentUser.OpenSubKey(
+                @"Software\Microsoft\Windows\CurrentVersion\Run",
+                writable: true);
 
-            RegistryKey rk = Registry.CurrentUser.OpenSubKey
-                ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (key == null)
+                throw new InvalidOperationException("Unable to access startup registry key.");
 
-           // if (!rk.GetValueNames().Contains("WBR"))
-            {
-                rk.SetValue("WBR", Assembly.GetExecutingAssembly().Location + "\\WBR.exe");
-            }
+            string exePath = Environment.ProcessPath
+                ?? throw new InvalidOperationException("Unable to determine executable path.");
 
-            rk = Registry.LocalMachine.OpenSubKey
-            ("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-
-            // if (!rk.GetValueNames().Contains("WBR"))
-            {
-                rk.SetValue("WBR", Assembly.GetExecutingAssembly().Location + "\\WBR.exe");
-            }
-
-            rk = Registry.LocalMachine.OpenSubKey
-            ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\run", true);
-
-            // if (!rk.GetValueNames().Contains("WBR"))
-            {
-                rk.SetValue("WBR", Assembly.GetExecutingAssembly().Location + "\\WBR.exe");
-            }
-
+            key.SetValue(appName, $"\"{exePath}\"");
 
         }
-        
 
+        private void AddRegistryEntry(string name, string path)
+        {
+            try
+            {
+                RegistryKey rk = Registry.CurrentUser.OpenSubKey
+                    ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                if (!rk.GetValueNames().Contains(name))
+                {
+                    rk.SetValue(name, path);
+                }
+            }
+            catch { } // prob no admin priv given, ignore
+        }
 
         private void SetupTray()
         {
@@ -219,7 +205,7 @@ namespace WBR
 
         private void Settings(object sender, RoutedEventArgs e)
         {
-            if(debugWindow == null || !debugWindow.IsLoaded || debugWindow.Visibility != Visibility.Visible)
+            if (debugWindow == null || !debugWindow.IsLoaded || debugWindow.Visibility != Visibility.Visible)
                 debugWindow = new DebugWindow(Update, ref Config);
 
             debugWindow.Show();
